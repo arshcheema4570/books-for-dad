@@ -1,39 +1,2297 @@
-<!doctype html>
-<html lang="hi">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#34265f"><title>किताब सार · Hindi Book Bites</title>
-<style>
-:root{--ink:#242038;--muted:#716b83;--paper:#f7f5fb;--card:#fff;--purple:#5b3f9c;--purple2:#34265f;--peach:#ffe8d9;--mint:#dff4ed;--gold:#f5b946;--line:#e5e0ee}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 5% 0,#e8e0ff,transparent 30%),var(--paper);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI","Noto Sans Devanagari",sans-serif}.app{width:min(100%,780px);margin:auto;padding:20px 16px 42px}.top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}.eyebrow{font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--purple);font-weight:850}.top h1{font-size:clamp(1.8rem,6vw,2.7rem);line-height:1.05;letter-spacing:-.055em;margin:5px 0 4px}.sub{color:var(--muted);margin:0;font-size:.98rem}.lang{border:1px solid var(--line);background:var(--card);color:var(--purple2);border-radius:999px;padding:9px 11px;font:inherit;font-size:.82rem;font-weight:850;cursor:pointer}.mark{background:var(--purple2);color:#fff;border-radius:18px;padding:12px 13px;font-size:1.3rem;box-shadow:0 8px 18px #34265f27}.search{margin:24px 0 15px;position:relative}.search input{width:100%;border:1px solid var(--line);border-radius:18px;padding:15px 18px 15px 45px;font:inherit;background:var(--card);color:var(--ink);outline:0;box-shadow:0 8px 24px #34265f0b}.search input:focus{border-color:var(--purple);box-shadow:0 0 0 4px #5b3f9c18}.search span{position:absolute;left:17px;top:13px;font-size:1.25rem}.chips{display:flex;gap:8px;overflow:auto;padding:2px 0 14px;scrollbar-width:none}.chips button{white-space:nowrap;border:1px solid var(--line);background:var(--card);color:var(--muted);padding:9px 13px;border-radius:999px;font-weight:750}.chips button.active{background:var(--purple);color:#fff;border-color:var(--purple)}.featured{border-radius:25px;background:linear-gradient(125deg,#34265f,#7051ae);color:#fff;padding:22px;margin:3px 0 22px;position:relative;overflow:hidden}.featured:after{content:'क';position:absolute;right:-5px;bottom:-38px;font-size:12rem;line-height:1;color:#ffffff0d;font-weight:900}.featured .tag{color:#e7dfff}.featured h2{font-size:1.55rem;max-width:520px;margin:7px 0}.featured p{max-width:550px;color:#eee8ff;line-height:1.55;margin:0}.read{display:inline-flex;border:0;border-radius:12px;background:#fff;color:var(--purple2);font:inherit;font-weight:850;padding:11px 14px;margin-top:16px;cursor:pointer}.section-title{display:flex;align-items:center;justify-content:space-between;margin:12px 2px}.section-title h2{font-size:1.25rem;margin:0}.count{color:var(--muted);font-size:.86rem}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.book{border:1px solid var(--line);background:var(--card);border-radius:20px;padding:15px;cursor:pointer;min-height:220px;display:flex;flex-direction:column;transition:transform .15s,box-shadow .15s}.book:hover{transform:translateY(-2px);box-shadow:0 12px 24px #34265f14}.cover{height:72px;width:58px;border-radius:8px;background:var(--cover,#e5dcff);display:grid;place-items:center;color:#fff;font-size:1.35rem;font-weight:900;box-shadow:4px 5px 0 #00000012;margin-bottom:13px}.book h3{font-size:1.02rem;line-height:1.25;margin:0 0 4px}.author{color:var(--muted);font-size:.82rem}.book p{color:var(--muted);font-size:.87rem;line-height:1.4;margin:10px 0 0}.book .time{margin-top:auto;padding-top:12px;color:var(--purple);font-size:.8rem;font-weight:850}.empty{text-align:center;color:var(--muted);padding:36px 0}.modal{position:fixed;inset:0;background:#171127a8;display:none;align-items:flex-end;justify-content:center;padding:12px;z-index:3}.modal.show{display:flex}.sheet{width:min(100%,760px);max-height:92vh;overflow:auto;background:var(--card);border-radius:27px 27px 18px 18px;padding:22px}.close{float:right;border:0;background:#f0edf5;border-radius:50%;width:38px;height:38px;font-size:1.2rem;cursor:pointer}.sheet .book-head{display:flex;gap:15px;align-items:center;padding-right:42px}.sheet .cover{flex:none;margin:0}.sheet h2{margin:0;font-size:1.5rem;line-height:1.2}.sheet .author{margin-top:4px}.bar{height:8px;background:#eeeaf4;border-radius:99px;margin:22px 0 18px;overflow:hidden}.bar i{display:block;height:100%;width:0;background:var(--purple);border-radius:99px}.sheet h3{font-size:1.1rem;margin:20px 0 6px}.sheet p,.sheet li{color:#514b62;line-height:1.65;font-size:1rem}.sheet ul{padding-left:22px}.takeaway{background:var(--mint);border-radius:16px;padding:14px;margin-top:18px}.takeaway strong{color:#246650}.sheet-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:22px}.sheet-actions button{border:0;border-radius:12px;padding:11px 14px;font:inherit;font-weight:800;cursor:pointer}.primary{background:var(--purple);color:#fff}.secondary{background:#eeeaf4;color:var(--ink)}.footer{text-align:center;color:var(--muted);font-size:.78rem;line-height:1.5;margin-top:25px}@media(max-width:520px){.app{padding:16px 12px 30px}.grid{grid-template-columns:1fr 1fr;gap:9px}.book{padding:13px;min-height:210px}.book p{font-size:.82rem}.sheet{padding:18px}.top h1{font-size:1.95rem}}@media(max-width:360px){.grid{grid-template-columns:1fr}.book{min-height:175px}.cover{height:62px}}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>QuickBlink | Offline Micro-Learning (Reliable Audio · ਪੰਜਾਬੀ · हिन्दी · English)</title>
+  <style>
+    :root {
+      --bg-main: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-header: #0f172a;
+      --text-header: #f8fafc;
+      --text-primary: #1e293b;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      --border-color: #cbd5e1;
+      --accent: #059669;
+      --accent-hover: #047857;
+      --accent-light: #ecfdf5;
+      --accent-punjabi: #b45309;
+      --accent-punjabi-light: #fef3c7;
+      --accent-hindi: #c2410c;
+      --accent-hindi-light: #ffedd5;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 14px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 25px rgba(0,0,0,0.15);
+      --radius: 14px;
+      --reader-font-size: 20px;
+      --reader-line-height: 1.8;
+      --font-family-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-family-serif: "Georgia", "Cambria", "Times New Roman", serif;
+      --font-family-punjabi: "Noto Sans Gurmukhi", "Raavi", "Saab", "Segoe UI", sans-serif;
+      --font-family-hindi: "Noto Sans Devanagari", "Mangal", "Segoe UI", sans-serif;
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
 
-/* Modern UI refresh */
-:root{--paper:#f6f7fb;--card:#ffffff;--ink:#211d39;--muted:#746e88;--purple:#6845ac;--purple2:#332459;--line:#e4e2ee}
-body{background:radial-gradient(circle at 0 0,#e9e2ff 0,transparent 34%),linear-gradient(135deg,#fbfaff,#f2f4fa);font-family:Inter,system-ui,-apple-system,"Segoe UI","Noto Sans Devanagari","Noto Sans Gurmukhi",sans-serif}.app{max-width:820px;padding:24px 16px 48px}.top{margin-bottom:8px}.top h1{font-weight:900}.lang,.mark{box-shadow:0 7px 18px #33245920;transition:.18s}.lang:hover,.mark:hover{transform:translateY(-1px)}.search{margin-top:26px}.search input{border:1px solid #dedbed;box-shadow:0 10px 28px #3324590d}.chips{padding-bottom:18px}.chips button{transition:.16s}.chips button:hover{transform:translateY(-1px);border-color:#bcaee1}.featured{box-shadow:0 18px 38px #3324592a;border:1px solid #8068b8}.featured h2{letter-spacing:-.035em}.read{box-shadow:0 7px 15px #170d3320;transition:.16s}.read:hover{transform:translateY(-1px)}.book{border:1px solid #e3dfed;box-shadow:0 8px 20px #3324590b;transition:transform .16s,box-shadow .16s}.book:hover{box-shadow:0 16px 30px #33245918}.cover{box-shadow:5px 6px 0 #21133b14}.sheet{box-shadow:0 20px 55px #17112730}.sheet-actions button{transition:.16s}.sheet-actions button:hover{transform:translateY(-1px)}
-@media(max-width:520px){.app{padding:17px 11px 34px}.top{align-items:flex-start;flex-wrap:wrap}.top>div:first-child{max-width:calc(100% - 100px)}.featured{padding:19px;border-radius:23px}.grid{gap:10px}}
+    body.theme-sepia {
+      --bg-main: #f5eedf;
+      --bg-card: #fbf7ee;
+      --bg-header: #382e25;
+      --text-header: #f7f3ed;
+      --text-primary: #2d241e;
+      --text-secondary: #635345;
+      --text-muted: #8c7866;
+      --border-color: #ded0bc;
+      --accent: #92400e;
+      --accent-hover: #78350f;
+      --accent-light: #fef3c7;
+    }
 
-</style></head>
-<body><main class="app"><header class="top"><div><div class="eyebrow" id="eyebrow">Hindi · Punjabi learning library</div><h1 id="appTitle">किताब सार</h1><p class="sub" id="appSub">कम समय में किताब के बड़े विचार समझिए</p></div><button class="lang" id="lang" aria-label="भाषा बदलें">ਪੰਜਾਬੀ</button><div class="mark">क📖</div></header><div class="search"><span>⌕</span><input id="search" type="search" placeholder="किताब या लेखक खोजें…" aria-label="किताब खोजें"></div><nav class="chips" id="chips"></nav><section class="featured"><div class="tag" id="featuredTag">आज का सार · 12 मिनट</div><h2 id="featuredTitle">Atomic Habits — छोटी आदतों का बड़ा असर</h2><p id="featured">सफल बदलाव इच्छाशक्ति से कम और रोज़ की छोटी, सही व्यवस्था से ज़्यादा बनता है।</p><button class="read" id="featuredRead" data-id="atomic">सार पढ़ें →</button></section><div class="section-title"><h2 id="heading">सभी किताबें</h2><span class="count" id="count"></span></div><section class="grid" id="grid"></section><p class="footer" id="footer">यह ऐप किताबों के मूल विचारों का संक्षिप्त, मौलिक शैक्षिक सार है। यह मूल किताब का विकल्प नहीं है और किसी प्रकाशक से संबद्ध नहीं है।</p></main><div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><article class="sheet"><button class="close" id="close" aria-label="बंद करें">×</button><div class="book-head"><div class="cover" id="mCover"></div><div><h2 id="modalTitle"></h2><div class="author" id="mAuthor"></div></div></div><div class="bar"><i id="bar"></i></div><div id="content"></div><div class="sheet-actions"><button class="primary" id="complete">✓ पढ़ लिया</button><button class="secondary" id="speak">🔊 सुनें</button></div></article></div>
-<script>
-const books=[
-{id:'atomic',cat:'आदतें',title:'Atomic Habits',hi:'एटॉमिक हैबिट्स',author:'James Clear',mins:12,color:'#6d50aa',letter:'A',blurb:'छोटी आदतों से स्थायी बदलाव',sections:[['मुख्य विचार','बड़े लक्ष्य प्रेरणा देते हैं, लेकिन रोज़ की व्यवस्था परिणाम बनाती है। एक प्रतिशत का छोटा सुधार लंबे समय में बहुत बड़ा अंतर पैदा कर सकता है।'],['चार कदम','आदत को स्पष्ट, आकर्षक, आसान और संतोषजनक बनाइए। अच्छी आदत को सामने रखिए; बुरी आदत के रास्ते में थोड़ा घर्षण डालिए।'],['आज का प्रयोग','किसी बड़ी आदत को दो मिनट के छोटे शुरुआती कदम में बदलिए—जैसे “किताब पढ़ूंगा” की जगह “एक पन्ना खोलूंगा।”']]},
-{id:'deep',cat:'काम',title:'Deep Work',hi:'डीप वर्क',author:'Cal Newport',mins:11,color:'#2b7890',letter:'D',blurb:'ध्यान भरे काम की शक्ति',sections:[['मुख्य विचार','बिना ध्यान भटके कठिन काम करने की क्षमता आज दुर्लभ है। यही क्षमता मूल्यवान परिणाम और सीखने की गति बढ़ाती है।'],['काम की व्यवस्था','गहरे काम के लिए समय पहले से तय करें, फोन और नोटिफिकेशन हटाएं, और एक स्पष्ट लक्ष्य लेकर बैठें।'],['आज का प्रयोग','25 मिनट का एक फोन-मुक्त सत्र शुरू करें। अंत में लिखें कि आपने क्या पूरा किया।']]},
-{id:'money',cat:'पैसा',title:'The Psychology of Money',hi:'पैसे का मनोविज्ञान',author:'Morgan Housel',mins:10,color:'#bf7652',letter:'₹',blurb:'पैसा गणित से अधिक व्यवहार है',sections:[['मुख्य विचार','पैसों के फैसले केवल जानकारी से नहीं, हमारे अनुभव, डर और इच्छाओं से बनते हैं। स्थिरता अक्सर तेज़ लाभ से अधिक महत्वपूर्ण है।'],['धैर्य','चक्रवृद्धि को समय चाहिए। अपनी क्षमता के भीतर खर्च, बचत की आदत और लंबे समय का दृष्टिकोण उपयोगी आधार हैं।'],['आज का प्रयोग','एक ऐसा खर्च लिखिए जो सच में आपके जीवन को बेहतर बनाता है और एक ऐसा जिसे आप केवल आदत से करते हैं।']]},
-{id:'ikigai',cat:'जीवन',title:'Ikigai',hi:'इकिगाई',author:'Héctor García & Francesc Miralles',mins:9,color:'#d18339',letter:'い',blurb:'अर्थपूर्ण और संतुलित जीवन',sections:[['मुख्य विचार','अर्थपूर्ण जीवन एक ही बड़े उत्तर से नहीं बनता। रोज़ का उद्देश्य, संबंध, सक्रियता और संतुलन मिलकर दिशा देते हैं।'],['छोटे कदम','ऐसी गतिविधियां खोजिए जिनमें रुचि, उपयोगिता और निरंतरता का मेल हो। तेज़ी से अधिक नियमितता पर ध्यान दें।'],['आज का प्रयोग','आज की वह एक गतिविधि लिखिए जिसके बाद आपको ऊर्जा और संतोष महसूस होता है।']]},
-{id:'essential',cat:'जीवन',title:'Essentialism',hi:'एसेंशियलिज़्म',author:'Greg McKeown',mins:10,color:'#477b68',letter:'E',blurb:'कम, लेकिन बेहतर',sections:[['मुख्य विचार','हर अवसर स्वीकार करने से जीवन बेहतर नहीं होता। महत्वपूर्ण चीज़ चुनने के लिए कई अच्छी चीज़ों को भी मना करना पड़ता है।'],['सीमा बनाना','अपने समय और ऊर्जा को सीमित संसाधन समझिए। पहले पूछिए: क्या यह सच में आवश्यक है?'],['आज का प्रयोग','आज एक छोटा काम हटाइए, टालिए या विनम्रता से मना कीजिए जो आपके मुख्य लक्ष्य से जुड़ा नहीं है।']]},
-{id:'seven',cat:'काम',title:'The 7 Habits',hi:'सात प्रभावी आदतें',author:'Stephen R. Covey',mins:12,color:'#8a5575',letter:'7',blurb:'जिम्मेदारी और प्राथमिकता',sections:[['मुख्य विचार','प्रभावी जीवन की शुरुआत अपने चुनावों की जिम्मेदारी लेने से होती है। प्रतिक्रिया देने से पहले रुकना एक शक्तिशाली कौशल है।'],['प्राथमिकता','जरूरी और महत्वपूर्ण कामों को पहले जगह दें। दूसरों को समझने की कोशिश, सहयोग को मजबूत करती है।'],['आज का प्रयोग','कल के तीन सबसे महत्वपूर्ण काम लिखिए और उन्हें समय दें।']]}
-];
-const PA={
-atomic:{cat:'ਆਦਤਾਂ',hi:'ਐਟਾਮਿਕ ਹੈਬਿਟਸ',blurb:'ਛੋਟੀਆਂ ਆਦਤਾਂ ਨਾਲ ਵੱਡੀ ਤਬਦੀਲੀ',sections:[['ਮੁੱਖ ਵਿਚਾਰ','ਵੱਡੇ ਟੀਚੇ ਪ੍ਰੇਰਨਾ ਦਿੰਦੇ ਹਨ, ਪਰ ਰੋਜ਼ ਦੀ ਚੰਗੀ ਪ੍ਰਣਾਲੀ ਨਤੀਜੇ ਬਣਾਉਂਦੀ ਹੈ। ਹਰ ਦਿਨ ਇੱਕ ਫੀਸਦੀ ਸੁਧਾਰ ਲੰਮੇ ਸਮੇਂ ਵਿੱਚ ਵੱਡਾ ਫਰਕ ਪਾ ਸਕਦਾ ਹੈ।'],['ਚਾਰ ਕਦਮ','ਆਦਤ ਨੂੰ ਸਪਸ਼ਟ, ਆਕਰਸ਼ਕ, ਆਸਾਨ ਅਤੇ ਸੰਤੋਸ਼ਜਨਕ ਬਣਾਓ। ਚੰਗੀ ਆਦਤ ਸਾਹਮਣੇ ਰੱਖੋ ਅਤੇ ਮਾੜੀ ਆਦਤ ਦੇ ਰਸਤੇ ਵਿੱਚ ਰੁਕਾਵਟ ਪਾਓ।'],['ਅੱਜ ਦਾ ਅਭਿਆਸ','ਵੱਡੀ ਆਦਤ ਨੂੰ ਦੋ ਮਿੰਟ ਦੇ ਛੋਟੇ ਪਹਿਲੇ ਕਦਮ ਵਿੱਚ ਬਦਲੋ—ਜਿਵੇਂ “ਕਿਤਾਬ ਪੜ੍ਹਾਂਗਾ” ਦੀ ਥਾਂ “ਇੱਕ ਪੰਨਾ ਖੋਲ੍ਹਾਂਗਾ।”']]},
-deep:{cat:'ਕੰਮ',hi:'ਡੀਪ ਵਰਕ',blurb:'ਧਿਆਨ ਨਾਲ ਕੰਮ ਕਰਨ ਦੀ ਤਾਕਤ',sections:[['ਮੁੱਖ ਵਿਚਾਰ','ਬਿਨਾਂ ਧਿਆਨ ਭਟਕੇ ਔਖਾ ਕੰਮ ਕਰਨ ਦੀ ਸਮਰੱਥਾ ਅੱਜ ਦੁਰਲੱਭ ਹੈ। ਇਹੀ ਸਮਰੱਥਾ ਕੀਮਤੀ ਨਤੀਜੇ ਅਤੇ ਤੇਜ਼ ਸਿੱਖਣ ਵਿੱਚ ਮਦਦ ਕਰਦੀ ਹੈ।'],['ਕੰਮ ਦੀ ਪ੍ਰਣਾਲੀ','ਗਹਿਰੇ ਕੰਮ ਲਈ ਸਮਾਂ ਪਹਿਲਾਂ ਤੈਅ ਕਰੋ, ਫੋਨ ਅਤੇ ਨੋਟੀਫਿਕੇਸ਼ਨ ਹਟਾਓ ਅਤੇ ਇੱਕ ਸਪਸ਼ਟ ਟੀਚਾ ਲੈ ਕੇ ਬੈਠੋ।'],['ਅੱਜ ਦਾ ਅਭਿਆਸ','25 ਮਿੰਟ ਦਾ ਫੋਨ-ਮੁਕਤ ਸੈਸ਼ਨ ਸ਼ੁਰੂ ਕਰੋ। ਅੰਤ ਵਿੱਚ ਲਿਖੋ ਕਿ ਤੁਸੀਂ ਕੀ ਪੂਰਾ ਕੀਤਾ।']]},
-money:{cat:'ਪੈਸਾ',hi:'ਪੈਸੇ ਦਾ ਮਨੋਵਿਗਿਆਨ',blurb:'ਪੈਸਾ ਗਣਿਤ ਨਾਲੋਂ ਵਿਹਾਰ ਹੈ',sections:[['ਮੁੱਖ ਵਿਚਾਰ','ਪੈਸੇ ਦੇ ਫੈਸਲੇ ਸਿਰਫ਼ ਜਾਣਕਾਰੀ ਨਾਲ ਨਹੀਂ, ਸਾਡੇ ਤਜਰਬੇ, ਡਰ ਅਤੇ ਇੱਛਾਵਾਂ ਨਾਲ ਬਣਦੇ ਹਨ। ਸਥਿਰਤਾ ਤੇਜ਼ ਮੁਨਾਫ਼ੇ ਨਾਲੋਂ ਜ਼ਿਆਦਾ ਮਹੱਤਵਪੂਰਨ ਹੋ ਸਕਦੀ ਹੈ।'],['ਧੀਰਜ','ਚੱਕਰਵਰਧੀ ਨੂੰ ਸਮਾਂ ਚਾਹੀਦਾ ਹੈ। ਆਪਣੀ ਸਮਰੱਥਾ ਅਨੁਸਾਰ ਖਰਚ, ਬਚਤ ਦੀ ਆਦਤ ਅਤੇ ਲੰਮੇ ਸਮੇਂ ਦਾ ਨਜ਼ਰੀਆ ਚੰਗਾ ਆਧਾਰ ਹਨ।'],['ਅੱਜ ਦਾ ਅਭਿਆਸ','ਇੱਕ ਅਜਿਹਾ ਖਰਚਾ ਲਿਖੋ ਜੋ ਤੁਹਾਡੀ ਜ਼ਿੰਦਗੀ ਸੱਚਮੁੱਚ ਬਿਹਤਰ ਬਣਾਉਂਦਾ ਹੈ ਅਤੇ ਇੱਕ ਜੋ ਤੁਸੀਂ ਸਿਰਫ਼ ਆਦਤ ਕਰਕੇ ਕਰਦੇ ਹੋ।']]},
-ikigai:{cat:'ਜੀਵਨ',hi:'ਇਕਿਗਾਈ',blurb:'ਅਰਥਪੂਰਨ ਅਤੇ ਸੰਤੁਲਿਤ ਜੀਵਨ',sections:[['ਮੁੱਖ ਵਿਚਾਰ','ਅਰਥਪੂਰਨ ਜੀਵਨ ਇੱਕੋ ਵੱਡੇ ਜਵਾਬ ਨਾਲ ਨਹੀਂ ਬਣਦਾ। ਰੋਜ਼ ਦਾ ਮਕਸਦ, ਰਿਸ਼ਤੇ, ਸਰਗਰਮੀ ਅਤੇ ਸੰਤੁਲਨ ਮਿਲ ਕੇ ਦਿਸ਼ਾ ਦਿੰਦੇ ਹਨ।'],['ਛੋਟੇ ਕਦਮ','ਉਹ ਕੰਮ ਲੱਭੋ ਜਿਨ੍ਹਾਂ ਵਿੱਚ ਰੁਚੀ, ਲਾਭ ਅਤੇ ਨਿਰੰਤਰਤਾ ਦਾ ਮੇਲ ਹੋਵੇ। ਤੇਜ਼ੀ ਨਾਲੋਂ ਨਿਯਮਿਤਤਾ ਉੱਤੇ ਧਿਆਨ ਦਿਓ।'],['ਅੱਜ ਦਾ ਅਭਿਆਸ','ਅੱਜ ਉਹ ਇੱਕ ਕੰਮ ਲਿਖੋ ਜਿਸ ਤੋਂ ਬਾਅਦ ਤੁਹਾਨੂੰ ਊਰਜਾ ਅਤੇ ਸੰਤੋਖ ਮਹਿਸੂਸ ਹੁੰਦਾ ਹੈ।']]},
-essential:{cat:'ਜੀਵਨ',hi:'ਐਸੈਂਸ਼ਲਿਜ਼ਮ',blurb:'ਘੱਟ, ਪਰ ਬਿਹਤਰ',sections:[['ਮੁੱਖ ਵਿਚਾਰ','ਹਰ ਮੌਕਾ ਸਵੀਕਾਰ ਕਰਨ ਨਾਲ ਜੀਵਨ ਬਿਹਤਰ ਨਹੀਂ ਹੁੰਦਾ। ਮਹੱਤਵਪੂਰਨ ਚੀਜ਼ ਚੁਣਨ ਲਈ ਕਈ ਚੰਗੀਆਂ ਚੀਜ਼ਾਂ ਨੂੰ ਵੀ ਨਾਂਹ ਕਹਿਣੀ ਪੈਂਦੀ ਹੈ।'],['ਸੀਮਾ ਬਣਾਓ','ਆਪਣੇ ਸਮੇਂ ਅਤੇ ਊਰਜਾ ਨੂੰ ਸੀਮਤ ਸਰੋਤ ਸਮਝੋ। ਪਹਿਲਾਂ ਪੁੱਛੋ: ਕੀ ਇਹ ਸੱਚਮੁੱਚ ਜ਼ਰੂਰੀ ਹੈ?'],['ਅੱਜ ਦਾ ਅਭਿਆਸ','ਅੱਜ ਇੱਕ ਛੋਟਾ ਕੰਮ ਹਟਾਓ, ਟਾਲੋ ਜਾਂ ਨਿਮਰਤਾ ਨਾਲ ਨਾਂਹ ਕਹੋ ਜੋ ਤੁਹਾਡੇ ਮੁੱਖ ਟੀਚੇ ਨਾਲ ਜੁੜਿਆ ਨਹੀਂ ਹੈ।']]},
-seven:{cat:'ਕੰਮ',hi:'ਸੱਤ ਪ੍ਰਭਾਵਸ਼ਾਲੀ ਆਦਤਾਂ',blurb:'ਜ਼ਿੰਮੇਵਾਰੀ ਅਤੇ ਤਰਜੀਹ',sections:[['ਮੁੱਖ ਵਿਚਾਰ','ਪ੍ਰਭਾਵਸ਼ਾਲੀ ਜੀਵਨ ਦੀ ਸ਼ੁਰੂਆਤ ਆਪਣੇ ਚੋਣਾਂ ਦੀ ਜ਼ਿੰਮੇਵਾਰੀ ਲੈਣ ਨਾਲ ਹੁੰਦੀ ਹੈ। ਜਵਾਬ ਦੇਣ ਤੋਂ ਪਹਿਲਾਂ ਰੁਕਣਾ ਇੱਕ ਤਾਕਤਵਰ ਹੁਨਰ ਹੈ।'],['ਤਰਜੀਹ','ਜ਼ਰੂਰੀ ਅਤੇ ਮਹੱਤਵਪੂਰਨ ਕੰਮਾਂ ਨੂੰ ਪਹਿਲ ਦਿਓ। ਦੂਜਿਆਂ ਨੂੰ ਸਮਝਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਸਹਿਯੋਗ ਮਜ਼ਬੂਤ ਕਰਦੀ ਹੈ।'],['ਅੱਜ ਦਾ ਅਭਿਆਸ','ਕੱਲ੍ਹ ਦੇ ਤਿੰਨ ਸਭ ਤੋਂ ਮਹੱਤਵਪੂਰਨ ਕੰਮ ਲਿਖੋ ਅਤੇ ਉਨ੍ਹਾਂ ਲਈ ਸਮਾਂ ਰੱਖੋ.']]}
-};
-const UI={hi:{lang:'ਪੰਜਾਬੀ',eyebrow:'Hindi · Punjabi learning library',title:'किताब सार',sub:'कम समय में किताब के बड़े विचार समझिए',search:'किताब या लेखक खोजें…',all:'सभी',books:'सभी किताबें',count:'सार',today:'आज का सार · 12 मिनट',featured:'Atomic Habits — छोटी आदतों का बड़ा असर',featuredText:'सफल बदलाव इच्छाशक्ति से कम और रोज़ की छोटी, सही व्यवस्था से ज़्यादा बनता है।',read:'सार पढ़ें →',readDone:'✓ पढ़ लिया',listen:'🔊 सुनें',close:'बंद करें',empty:'कोई किताब नहीं मिली। दूसरा शब्द खोजिए।',one:'एक पंक्ति में:',minutes:'मिनट',done:'✓ पढ़ा हुआ',footer:'यह ऐप किताबों के मूल विचारों का संक्षिप्त, मौलिक शैक्षिक सार है। यह मूल किताब का विकल्प नहीं है और किसी प्रकाशक से संबद्ध नहीं है।'},pa:{lang:'हिन्दी',eyebrow:'Hindi · Punjabi learning library',title:'ਕਿਤਾਬ ਸਾਰ',sub:'ਘੱਟ ਸਮੇਂ ਵਿੱਚ ਕਿਤਾਬਾਂ ਦੇ ਵੱਡੇ ਵਿਚਾਰ ਸਮਝੋ',search:'ਕਿਤਾਬ ਜਾਂ ਲੇਖਕ ਲੱਭੋ…',all:'ਸਭ',books:'ਸਾਰੀਆਂ ਕਿਤਾਬਾਂ',count:'ਸਾਰ',today:'ਅੱਜ ਦਾ ਸਾਰ · 12 ਮਿੰਟ',featured:'Atomic Habits — ਛੋਟੀਆਂ ਆਦਤਾਂ ਨਾਲ ਵੱਡੀ ਤਬਦੀਲੀ',featuredText:'ਸਫਲ ਤਬਦੀਲੀ ਇੱਛਾ-ਸ਼ਕਤੀ ਨਾਲੋਂ ਰੋਜ਼ ਦੀਆਂ ਛੋਟੀਆਂ, ਸਹੀ ਆਦਤਾਂ ਨਾਲ ਜ਼ਿਆਦਾ ਬਣਦੀ ਹੈ।',read:'ਸਾਰ ਪੜ੍ਹੋ →',readDone:'✓ ਪੜ੍ਹ ਲਿਆ',listen:'🔊 ਸੁਣੋ',close:'ਬੰਦ ਕਰੋ',empty:'ਕੋਈ ਕਿਤਾਬ ਨਹੀਂ ਮਿਲੀ। ਹੋਰ ਸ਼ਬਦ ਲੱਭੋ।',one:'ਇੱਕ ਲਾਈਨ ਵਿੱਚ:',minutes:'ਮਿੰਟ',done:'✓ ਪੜ੍ਹਿਆ',footer:'ਇਹ ਐਪ ਕਿਤਾਬਾਂ ਦੇ ਮੂਲ ਵਿਚਾਰਾਂ ਦਾ ਛੋਟਾ, ਮੌਲਿਕ ਸਿੱਖਿਆਤਮਕ ਸਾਰ ਹੈ। ਇਹ ਮੂਲ ਕਿਤਾਬ ਦਾ ਬਦਲ ਨਹੀਂ ਅਤੇ ਕਿਸੇ ਪ੍ਰਕਾਸ਼ਕ ਨਾਲ ਸੰਬੰਧਿਤ ਨਹੀਂ ਹੈ।'}};
-let lang=localStorage.getItem('booksDadLang')||'hi',active='all',current=null,completed=JSON.parse(localStorage.getItem('hindiBookBitesDone')||'[]');const $=id=>document.getElementById(id), t=()=>UI[lang];
-function labels(){let u=t();document.documentElement.lang=lang==='hi'?'hi':'pa';$('lang').textContent=u.lang;$('eyebrow').textContent=u.eyebrow;$('appTitle').textContent=u.title;$('appSub').textContent=u.sub;$('search').placeholder=u.search;$('search').setAttribute('aria-label',u.search);$('featured').textContent=u.featuredText;$('featuredTitle').textContent=u.featured;$('featuredTag').textContent=u.today;$('featuredRead').textContent=u.read;$('heading').textContent=u.books;$('footer').textContent=u.footer;$('close').setAttribute('aria-label',u.close);$('complete').textContent=u.readDone;$('speak').textContent=u.listen}
-function getBook(b){return lang==='pa'?{...b,...PA[b.id]}:b}function renderChips(){let cats=lang==='hi'?['all','आदतें','काम','पैसा','जीवन']:['all','ਆਦਤਾਂ','ਕੰਮ','ਪੈਸਾ','ਜੀਵਨ'];$('chips').innerHTML=cats.map(c=>`<button class="${c===active?'active':''}" data-cat="${c}">${c==='all'?t().all:c}</button>`).join('');document.querySelectorAll('[data-cat]').forEach(b=>b.onclick=()=>{active=b.dataset.cat;render()})}
-function render(){labels();renderChips();let q=$('search').value.trim().toLowerCase();let list=books.map(getBook).filter(b=>(active==='all'||b.cat===active)&&(!q||`${b.title} ${b.hi} ${b.author} ${b.blurb} ${b.cat}`.toLowerCase().includes(q)));$('heading').textContent=q||active!=='all'?(lang==='hi'?`परिणाम · ${active}`:`ਨਤੀਜੇ · ${active}`):t().books;$('count').textContent=`${list.length} ${t().count}`;$('grid').innerHTML=list.length?list.map(b=>`<article class="book" data-id="${b.id}"><div class="cover" style="--cover:${b.color}">${b.letter}</div><h3>${b.hi}</h3><div class="author">${b.author}</div><p>${b.blurb}</p><div class="time">${b.mins} ${t().minutes} ${completed.includes(b.id)?' · '+t().done:''}</div></article>`).join(''):`<div class="empty">${t().empty}</div>`;document.querySelectorAll('.book').forEach(x=>x.onclick=()=>openBook(x.dataset.id))}
-function openBook(id){current=getBook(books.find(b=>b.id===id));$('mCover').textContent=current.letter;$('mCover').style.setProperty('--cover',current.color);$('modalTitle').textContent=current.hi+' · '+current.title;$('mAuthor').textContent=current.author+' · '+current.mins+' '+t().minutes;$('bar').style.width=completed.includes(id)?'100%':'0%';$('content').innerHTML=current.sections.map((s,n)=>`<section><h3>${n+1}. ${s[0]}</h3><p>${s[1]}</p></section>`).join('')+`<div class="takeaway"><strong>${t().one}</strong> ${current.blurb}।</div>`;$('modal').classList.add('show');document.body.style.overflow='hidden'}function close(){$('modal').classList.remove('show');document.body.style.overflow=''}
-$('featuredRead').onclick=()=>openBook('atomic');$('search').oninput=render;$('lang').onclick=()=>{lang=lang==='hi'?'pa':'hi';localStorage.setItem('booksDadLang',lang);render()};$('close').onclick=close;$('modal').onclick=e=>{if(e.target===$('modal'))close()};$('complete').onclick=()=>{if(!completed.includes(current.id))completed.push(current.id);localStorage.setItem('hindiBookBitesDone',JSON.stringify(completed));$('bar').style.width='100%';render()};$('speak').onclick=()=>{if(!current)return;speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(current.hi+'. '+current.sections.map(x=>x[1]).join(' '));u.lang=lang==='hi'?'hi-IN':'pa-IN';u.rate=.9;speechSynthesis.speak(u)};document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});render();
-</script></body></html>
+    body.theme-dark {
+      --bg-main: #090d14;
+      --bg-card: #131b26;
+      --bg-header: #070a0f;
+      --text-header: #f1f5f9;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --border-color: #1e293b;
+      --accent: #10b981;
+      --accent-hover: #059669;
+      --accent-light: rgba(16, 185, 129, 0.15);
+    }
+
+    body.elder-mode {
+      --reader-font-size: 24px;
+      --reader-line-height: 1.95;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: var(--font-family-sans);
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      transition: background-color 0.25s ease, color 0.25s ease;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Top Navigation Header */
+    header {
+      background-color: var(--bg-header);
+      color: var(--text-header);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .brand-logo {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, #10b981, #047857);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 900;
+      font-size: 1.3rem;
+      box-shadow: 0 2px 8px rgba(16,185,129,0.35);
+      flex-shrink: 0;
+    }
+
+    .brand-name {
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .brand-badge {
+      font-size: 0.65rem;
+      padding: 0.15rem 0.4rem;
+      background: rgba(16, 185, 129, 0.25);
+      color: #34d399;
+      border-radius: 4px;
+      font-weight: 800;
+    }
+
+    .brand-sub {
+      font-size: 0.75rem;
+      color: #cbd5e1;
+      display: flex;
+      gap: 0.35rem;
+    }
+
+    .nav-tabs {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      list-style: none;
+    }
+
+    .nav-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 0.5rem 0.75rem;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover {
+      color: #f8fafc;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .nav-btn.active {
+      color: #ffffff;
+      background: rgba(16, 185, 129, 0.3);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* Buttons */
+    .btn {
+      padding: 0.55rem 0.95rem;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      transition: all 0.2s;
+      user-select: none;
+      touch-action: manipulation;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-outline {
+      background: var(--bg-card);
+      border-color: var(--border-color);
+      color: var(--text-primary);
+    }
+
+    .btn-outline:hover {
+      background: var(--border-color);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-secondary);
+      border: none;
+    }
+
+    .btn-ghost:hover {
+      color: var(--text-primary);
+      background: rgba(0,0,0,0.06);
+    }
+
+    .btn-speaker-test {
+      background: #fef08a;
+      color: #854d0e;
+      border: 1px solid #fde047;
+      font-weight: 800;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 1.25rem 1rem calc(8.5rem + var(--safe-bottom));
+      flex: 1;
+    }
+
+    /* Status / Diagnostic Bar */
+    .diagnostic-banner {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 0.65rem 1rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      flex-wrap: wrap;
+    }
+
+    .diagnostic-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    /* Language Switcher Bar */
+    .lang-banner {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 0.75rem 1rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--shadow-sm);
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .lang-banner-label {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .lang-pill-group {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .lang-pill {
+      padding: 0.45rem 0.85rem;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-main);
+      color: var(--text-primary);
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: all 0.2s;
+    }
+
+    .lang-pill.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+      box-shadow: 0 2px 6px rgba(5,150,105,0.3);
+    }
+
+    .lang-pill.active-pa {
+      background: var(--accent-punjabi);
+      color: white;
+      border-color: var(--accent-punjabi);
+      box-shadow: 0 2px 6px rgba(180,83,9,0.3);
+    }
+
+    .lang-pill.active-hi {
+      background: var(--accent-hindi);
+      color: white;
+      border-color: var(--accent-hindi);
+      box-shadow: 0 2px 6px rgba(194,65,12,0.3);
+    }
+
+    /* Hero Banner */
+    .hero-banner {
+      background: linear-gradient(135deg, #064e3b, #047857, #0d9488);
+      color: white;
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 0.25rem 0.65rem;
+      background: rgba(255,255,255,0.22);
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 0.35rem;
+    }
+
+    .hero-title-native {
+      font-size: 1.35rem;
+      color: #fef08a;
+      margin-bottom: 0.65rem;
+      font-weight: 700;
+    }
+
+    .hero-desc {
+      font-size: 0.95rem;
+      color: #d1fae5;
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+      max-width: 680px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-hero-listen {
+      background: #fef08a;
+      color: #713f12;
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 0.75rem 1.4rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .btn-hero-read {
+      background: rgba(255,255,255,0.2);
+      color: white;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.75rem 1.25rem;
+      border-radius: 12px;
+    }
+
+    /* Search & Categories */
+    .search-filter-section {
+      margin-bottom: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.85rem 1rem 0.85rem 2.75rem;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      font-size: 1rem;
+      box-shadow: var(--shadow-sm);
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent);
+    }
+
+    .categories-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      overflow-x: auto;
+      padding-bottom: 0.35rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .categories-bar::-webkit-scrollbar { display: none; }
+
+    .category-pill {
+      padding: 0.45rem 0.85rem;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      font-weight: 700;
+      white-space: nowrap;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .category-pill.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    /* Book Cards Grid */
+    .book-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .book-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .book-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--accent);
+    }
+
+    .book-cover-wrap {
+      width: 100%;
+      height: 140px;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    .book-cover-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      line-height: 1.25;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    }
+
+    .book-cover-author {
+      font-size: 0.82rem;
+      opacity: 0.95;
+      margin-top: 0.25rem;
+    }
+
+    .book-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .meta-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+
+    .meta-tag-category {
+      background: var(--border-color);
+      color: var(--text-primary);
+    }
+
+    .meta-tag-lang {
+      background: #fef3c7;
+      color: #92400e;
+      border: 1px solid #fde68a;
+      font-weight: 800;
+    }
+
+    .book-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 0.2rem;
+      line-height: 1.3;
+    }
+
+    .book-title-native {
+      font-size: 1rem;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+      font-weight: 700;
+    }
+
+    .book-author {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.65rem;
+    }
+
+    .book-snippet {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
+      margin-bottom: 1.15rem;
+      flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .book-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border-color);
+      padding-top: 0.85rem;
+      gap: 0.5rem;
+    }
+
+    .card-actions-left {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      flex: 1;
+    }
+
+    .btn-card-listen {
+      background: #fef08a;
+      color: #713f12;
+      border: 1px solid #fde047;
+      font-weight: 800;
+      padding: 0.5rem 0.85rem;
+      border-radius: 8px;
+    }
+
+    /* Reader View */
+    .reader-view {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--bg-main);
+      z-index: 200;
+      overflow-y: auto;
+      flex-direction: column;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .reader-view.active {
+      display: flex;
+    }
+
+    .reader-top-bar {
+      position: sticky;
+      top: 0;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border-color);
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 10;
+      box-shadow: var(--shadow-sm);
+      gap: 0.5rem;
+    }
+
+    .reader-title-area {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .reader-book-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: var(--text-primary);
+    }
+
+    .reader-blink-status {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+
+    .reader-progress-line {
+      width: 100%;
+      height: 4px;
+      background: var(--border-color);
+    }
+
+    .reader-progress-active {
+      height: 100%;
+      background: var(--accent);
+      width: 0%;
+      transition: width 0.2s ease;
+    }
+
+    .reader-main-container {
+      max-width: 780px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 1.5rem 1rem calc(9.5rem + var(--safe-bottom));
+      flex: 1;
+    }
+
+    .reader-blink-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      padding: 1.75rem 1.5rem;
+      box-shadow: var(--shadow-md);
+      position: relative;
+    }
+
+    .blink-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .blink-heading {
+      font-size: 1.65rem;
+      font-weight: 800;
+      line-height: 1.35;
+      margin-bottom: 1.25rem;
+      color: var(--text-primary);
+    }
+
+    .blink-takeaway-box {
+      background: var(--accent-light);
+      border-left: 5px solid var(--accent);
+      padding: 1rem 1.25rem;
+      border-radius: 0 10px 10px 0;
+      margin-bottom: 1.5rem;
+    }
+
+    .takeaway-label {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.25rem;
+    }
+
+    .takeaway-text {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.5;
+    }
+
+    .blink-body-content {
+      font-size: var(--reader-font-size);
+      line-height: var(--reader-line-height);
+      color: var(--text-primary);
+    }
+
+    .blink-sentence {
+      padding: 2px 3px;
+      border-radius: 4px;
+      transition: background-color 0.2s;
+    }
+
+    .blink-sentence.reading-active {
+      background-color: #fef08a;
+      color: #1e293b;
+      box-shadow: 0 0 0 2px #fde047;
+      font-weight: 600;
+    }
+
+    .reader-navigation-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 2rem;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    /* Sticky Bottom Universal Audio Player */
+    .audio-player-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--bg-card);
+      border-top: 1px solid var(--border-color);
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+      padding: 0.75rem 1rem calc(0.75rem + var(--safe-bottom));
+      z-index: 250;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .audio-player-bar.hidden {
+      transform: translateY(100%);
+    }
+
+    .player-row-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .player-book-info {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      overflow: hidden;
+      flex: 1;
+    }
+
+    .player-thumb {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.3rem;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .player-text {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .player-title {
+      font-size: 0.92rem;
+      font-weight: 800;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: var(--text-primary);
+    }
+
+    .player-subtitle {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .player-main-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .player-circle-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 3px 10px rgba(5,150,105,0.4);
+      font-size: 1.3rem;
+    }
+
+    .player-skip-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .player-row-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+
+    .player-scrubber-track {
+      flex: 1;
+      height: 6px;
+      background: var(--border-color);
+      border-radius: 3px;
+      position: relative;
+      cursor: pointer;
+      min-width: 100px;
+    }
+
+    .player-scrubber-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 3px;
+      width: 0%;
+      transition: width 0.15s ease;
+    }
+
+    .player-extra-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .control-pill-btn {
+      padding: 0.25rem 0.5rem;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-main);
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .control-pill-btn.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .voice-select-box {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.4rem;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-main);
+      color: var(--text-primary);
+      max-width: 140px;
+      cursor: pointer;
+    }
+
+    /* Modal Backdrop */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      z-index: 400;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+      backdrop-filter: blur(3px);
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: var(--bg-card);
+      color: var(--text-primary);
+      border-radius: 16px;
+      max-width: 580px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: var(--shadow-lg);
+      padding: 1.75rem;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: transparent;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .header-inner {
+        padding: 0.6rem 0.75rem;
+      }
+      .brand-sub {
+        display: none;
+      }
+      .hero-title {
+        font-size: 1.45rem;
+      }
+      .hero-title-native {
+        font-size: 1.15rem;
+      }
+      .reader-blink-card {
+        padding: 1.25rem 1rem;
+      }
+      .blink-heading {
+        font-size: 1.35rem;
+      }
+    }
+  </style>
+</head>
+<body class="theme-light">
+
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <div class="brand" onclick="switchNav('discover')">
+        <div class="brand-logo">⚡</div>
+        <div class="brand-text">
+          <div class="brand-name">
+            QuickBlink
+            <span class="brand-badge">Offline</span>
+          </div>
+          <div class="brand-sub">
+            <span>ਪੰਜਾਬੀ</span> · <span>हिन्दी</span> · <span>English</span>
+          </div>
+        </div>
+      </div>
+
+      <ul class="nav-tabs">
+        <li>
+          <button class="nav-btn active" id="tab-btn-discover" onclick="switchNav('discover')">
+            📚 Discover
+          </button>
+        </li>
+        <li>
+          <button class="nav-btn" id="tab-btn-library" onclick="switchNav('library')">
+            🔖 Saved
+          </button>
+        </li>
+      </ul>
+
+      <div class="header-actions">
+        <!-- 1-Click Speaker Test Button -->
+        <button class="btn btn-speaker-test" onclick="testSpeakerVoice()" title="Click to test speech sound on this device">
+          🔊 Test Audio
+        </button>
+        <button class="btn btn-outline" onclick="openHomeAppModal()" title="Install or Add to Mobile Screen">
+          📲 Setup
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="container">
+
+    <!-- Diagnostic & Voice Status Bar -->
+    <div class="diagnostic-banner" id="diagnostic-banner">
+      <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+        <span class="diagnostic-badge">
+          <span style="font-size:1rem;">●</span>
+          <span id="diag-voice-status">Scanning speech engine...</span>
+        </span>
+        <span id="diag-fallback-note" style="color:#b45309; font-weight:700;"></span>
+      </div>
+      <div>
+        <label style="font-weight:700; font-size:0.75rem; margin-right:0.25rem;">Speaker Voice:</label>
+        <select class="voice-select-box" id="header-voice-select" onchange="onUserSelectVoice(this.value)">
+          <option value="">Auto Detect Voice</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Global 3-Way Language Selector -->
+    <div class="lang-banner">
+      <div class="lang-banner-label">
+        <span>🗣️ ਸੁਣਨ ਅਤੇ ਪੜ੍ਹਨ ਦੀ ਭਾਸ਼ਾ (Reading & Audio Mode):</span>
+      </div>
+      <div class="lang-pill-group">
+        <button class="lang-pill active-pa" id="pill-pa" onclick="setGlobalLanguage('pa')">
+          🇮🇳 ਪੰਜਾਬੀ (Punjabi)
+        </button>
+        <button class="lang-pill" id="pill-hi" onclick="setGlobalLanguage('hi')">
+          🇮🇳 हिन्दी (Hindi)
+        </button>
+        <button class="lang-pill" id="pill-en" onclick="setGlobalLanguage('en')">
+          🇬🇧 English
+        </button>
+      </div>
+    </div>
+
+    <!-- Discover View -->
+    <div id="view-discover">
+      
+      <!-- Hero Banner -->
+      <div class="hero-banner" id="hero-banner">
+        <span class="hero-badge">🌟 Featured Offline Blink</span>
+        <h1 class="hero-title" id="hero-title">Ikigai</h1>
+        <div class="hero-title-native" id="hero-title-native">ਇਕੀਗਾਈ: ਲੰਬੀ ਅਤੇ ਖੁਸ਼ਹਾਲ ਜ਼ਿੰਦਗੀ ਦਾ ਜਾਪਾਨੀ ਰਾਜ਼</div>
+        <p class="hero-desc" id="hero-desc">
+          The Japanese secret to finding life purpose, eating to 80% fullness, and living happily past 100 years.
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-hero-listen" onclick="startAudioForBook('ikigai')">
+            ▶️ ਸੁਣੋ (Listen Audio)
+          </button>
+          <button class="btn btn-hero-read" onclick="openReader('ikigai', 0)">
+            📖 ਪੜ੍ਹੋ (Read Blinks)
+          </button>
+        </div>
+      </div>
+
+      <!-- Search & Filters -->
+      <div class="search-filter-section">
+        <div style="position:relative;">
+          <input type="text" id="search-input" class="search-input" placeholder="Search 10 books (ਇਕੀਗਾਈ, Ikigai, Money, Power of Now, Habits)..." oninput="filterBooks()">
+        </div>
+        <div class="categories-bar" id="categories-bar">
+          <button class="category-pill active" onclick="setCategory('All')">All (10 Summaries / ਸਾਰੇ)</button>
+          <button class="category-pill" onclick="setCategory('Health & Life')">Health & Life / ਜੀਵਨ ਅਤੇ ਸਿਹਤ</button>
+          <button class="category-pill" onclick="setCategory('Productivity')">Productivity / ਉਤਪਾਦਕਤਾ</button>
+          <button class="category-pill" onclick="setCategory('Finance')">Money / ਵਿੱਤ / धन</button>
+          <button class="category-pill" onclick="setCategory('Mindset')">Mindset / ਸ਼ਾਂਤ ਮਨ</button>
+          <button class="category-pill" onclick="setCategory('Relationships')">Relationships / ਸੰਬੰਧ</button>
+        </div>
+      </div>
+
+      <!-- Book Cards Grid -->
+      <div class="book-grid" id="book-grid">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- Saved Library View -->
+    <div id="view-library" style="display:none;">
+      <h2 style="font-size:1.3rem; margin-bottom:1rem;">My Saved Summaries (ਸਾਂਭੀਆਂ ਹੋਈਆਂ ਕਿਤਾਬਾਂ)</h2>
+      <div class="book-grid" id="library-book-grid">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Fullscreen Reader -->
+  <div class="reader-view" id="reader-view">
+    <div class="reader-top-bar">
+      <button class="btn btn-ghost" onclick="closeReader()" style="font-size:1.15rem; padding:0.4rem 0.6rem;">
+        ← Back
+      </button>
+
+      <div class="reader-title-area">
+        <div class="reader-book-title" id="reader-book-title">Ikigai</div>
+        <div class="reader-blink-status" id="reader-blink-status">Blink 1 of 3</div>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:0.35rem;">
+        <button class="btn btn-outline" id="btn-elder-toggle" onclick="toggleElderMode()" title="Toggle Extra Large Elder Font">
+          👓 ਵੱਡੇ ਅੱਖਰ
+        </button>
+        <button class="btn btn-outline" onclick="cycleTheme()" title="Theme (Light / Sepia / Dark)">🎨</button>
+      </div>
+    </div>
+
+    <div class="reader-progress-line">
+      <div class="reader-progress-active" id="reader-progress-line"></div>
+    </div>
+
+    <div class="reader-main-container">
+      <div class="reader-blink-card">
+        <div class="blink-eyebrow" id="blink-eyebrow">BLINK 1 OF 3</div>
+        <h1 class="blink-heading" id="blink-heading">What is Ikigai?</h1>
+
+        <div class="blink-takeaway-box" id="blink-takeaway-box">
+          <div class="takeaway-label" id="takeaway-label">Key Insight / ਮੁੱਖ ਸਾਰ</div>
+          <div class="takeaway-text" id="blink-takeaway-text"></div>
+        </div>
+
+        <div class="blink-body-content" id="blink-body-content">
+          <!-- Text rendered here -->
+        </div>
+
+        <div class="reader-navigation-footer">
+          <button class="btn btn-outline" id="btn-prev-blink" onclick="navigateBlink(-1)">
+            ← Previous
+          </button>
+          <button class="btn btn-card-listen" onclick="playCurrentBlinkAudio()">
+            ▶️ Listen This Blink (ਸੁਣੋ)
+          </button>
+          <button class="btn btn-primary" id="btn-next-blink" onclick="navigateBlink(1)">
+            Next →
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Bottom Universal Audio Player -->
+  <div class="audio-player-bar hidden" id="audio-player-bar">
+    <div class="player-row-top">
+      <div class="player-book-info">
+        <div class="player-thumb" id="player-thumb" style="background:#059669;">⚡</div>
+        <div class="player-text">
+          <div class="player-title" id="player-title">Ikigai</div>
+          <div class="player-subtitle" id="player-subtitle">Blink 1: What is Ikigai?</div>
+        </div>
+      </div>
+
+      <div class="player-main-controls">
+        <button class="player-skip-btn" onclick="navigateBlinkAudio(-1)" title="Previous Blink">⏮</button>
+        <button class="player-circle-btn" id="player-play-btn" onclick="toggleAudioPlay()" title="Play / Pause">▶</button>
+        <button class="player-skip-btn" onclick="navigateBlinkAudio(1)" title="Next Blink">⏭</button>
+      </div>
+    </div>
+
+    <div class="player-row-bottom">
+      <div class="player-scrubber-track" onclick="scrubAudio(event)">
+        <div class="player-scrubber-fill" id="player-scrubber-fill"></div>
+      </div>
+
+      <div class="player-extra-controls">
+        <!-- Speed Control -->
+        <button class="control-pill-btn" id="speed-btn" onclick="cycleAudioSpeed()" title="Playback Speed">
+          ⚡ 1.0x
+        </button>
+
+        <!-- Sleep Timer -->
+        <button class="control-pill-btn" id="sleep-timer-btn" onclick="cycleSleepTimer()" title="Sleep Timer">
+          ⏰ Off
+        </button>
+
+        <!-- Voice badge -->
+        <span class="control-pill-btn" id="player-voice-badge" style="cursor:pointer;" onclick="testSpeakerVoice()">
+          🎙️ Voice
+        </span>
+
+        <button class="btn-ghost" style="padding:0.2rem 0.4rem; font-size:0.8rem;" onclick="closeAudioPlayer()">✕</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Home Screen Setup Modal -->
+  <div class="modal-backdrop" id="modal-home-app">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeHomeAppModal()">✕</button>
+      <h3 style="font-size:1.3rem; margin-bottom:0.75rem;">📲 Add to Mobile Home Screen (ਫੋਨ 'ਤੇ ਐਪ ਵਾਂਗ ਲਗਾਓ)</h3>
+      
+      <p style="font-size:0.95rem; line-height:1.6; color:var(--text-secondary); margin-bottom:1.25rem;">
+        Your father can save this as an app icon on his phone's home screen so he can open it with a single tap anytime!
+      </p>
+
+      <div style="background:var(--bg-main); border:1px solid var(--border-color); border-radius:12px; padding:1.25rem; margin-bottom:1rem;">
+        <h4 style="color:#0284c7; margin-bottom:0.4rem;">📱 On iPhone (Safari):</h4>
+        <ol style="padding-left:1.25rem; font-size:0.88rem; line-height:1.6; color:var(--text-primary);">
+          <li>Open this link or file in <strong>Safari</strong>.</li>
+          <li>Tap the <strong>Share button</strong> (the square with an arrow pointing up at the bottom).</li>
+          <li>Scroll down and tap <strong>"Add to Home Screen" (ਹੋਮ ਸਕ੍ਰੀਨ 'ਤੇ ਸ਼ਾਮਲ ਕਰੋ)</strong>.</li>
+        </ol>
+      </div>
+
+      <div style="background:var(--bg-main); border:1px solid var(--border-color); border-radius:12px; padding:1.25rem; margin-bottom:1.25rem;">
+        <h4 style="color:var(--accent); margin-bottom:0.4rem;">📱 On Android (Chrome):</h4>
+        <ol style="padding-left:1.25rem; font-size:0.88rem; line-height:1.6; color:var(--text-primary);">
+          <li>Open this link or file in <strong>Google Chrome</strong>.</li>
+          <li>Tap the <strong>three dots (⋮)</strong> in the top-right corner.</li>
+          <li>Tap <strong>"Add to Home screen" (Install app)</strong>.</li>
+        </ol>
+      </div>
+
+      <div style="text-align:right;">
+        <button class="btn btn-primary" onclick="closeHomeAppModal()">Got it!</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ==========================================================================
+       CURATED 10-BOOK TRILINGUAL DATASET (English · ਪੰਜਾਬੀ · हिन्दी)
+       ========================================================================== */
+    const BOOKS = [
+      {
+        id: "ikigai",
+        title: "Ikigai",
+        titlePa: "ਇਕੀਗਾਈ: ਲੰਬੀ ਅਤੇ ਖੁਸ਼ਹਾਲ ਜ਼ਿੰਦਗੀ ਦਾ ਜਾਪਾਨੀ ਰਾਜ਼",
+        titleHi: "इकिगाई: लंबी और खुशहाल ज़िंदगी का जापानी रहस्य",
+        author: "Héctor García & Francesc Miralles",
+        authorPa: "ਹੈਕਟਰ ਗਾਰਸੀਆ ਅਤੇ ਫ੍ਰਾਂਸਿਸਕ ਮੀਰਾਲੇਸ",
+        authorHi: "हेक्टर गार्सिया और फ्रांसिस मिरालेस",
+        category: "Health & Life",
+        color: "#059669",
+        bgGradient: "linear-gradient(135deg, #059669, #047857)",
+        description: "Find your life purpose, eat well, stay active, and live happily past 100 years.",
+        descriptionPa: "ਜ਼ਿੰਦਗੀ ਦਾ ਮਕਸਦ ਲੱਭੋ, ਚੰਗੀ ਖ਼ੁਰਾਕ ਖਾਓ, ਖੁਸ਼ ਰਹੋ ਅਤੇ 100 ਸਾਲ ਤੋਂ ਵੱਧ ਨਰੋਈ ਉਮਰ ਜੀਓ।",
+        descriptionHi: "अपने जीवन का उद्देश्य खोजें, सात्विक भोजन करें, सक्रिय रहें और 100 साल से अधिक खुशहाल जिएं।",
+        blinks: [
+          {
+            title: "What is Ikigai? Finding Your Purpose",
+            titlePa: "ਇਕੀਗਾਈ ਕੀ ਹੈ? ਜ਼ਿੰਦਗੀ ਦਾ ਅਸਲ ਮਕਸਦ",
+            titleHi: "इकिगाई क्या है? जीवन का असली उद्देश्य",
+            takeaway: "Ikigai is the intersection of what you love, what you are good at, and what the world needs.",
+            takeawayPa: "ਇਕੀਗਾਈ ਉਹ ਕੰਮ ਹੈ ਜਿਸ ਨਾਲ ਤੁਹਾਨੂੰ ਪਿਆਰ ਹੋਵੇ, ਜਿਸ ਵਿੱਚ ਤੁਸੀਂ ਮਾਹਰ ਹੋਵੋ ਅਤੇ ਜੋ ਦੁਨੀਆਂ ਦੇ ਭਲੇ ਲਈ ਹੋਵੇ।",
+            takeawayHi: "इकिगाई वह काम है जिससे आपको प्यार हो, जिसमें आप कुशल हों और जिससे दुनिया का भला हो।",
+            content: "In Okinawa, Japan, people live longer and healthier lives than anywhere else on earth. One of their biggest secrets is having an Ikigai—a clear reason to wake up with joy every morning. When you have a purposeful reason for living, stress melts away and mental vitality remains sharp well into your nineties.",
+            contentPa: "ਜਾਪਾਨ ਦੇ ਓਕੀਨਾਵਾ ਟਾਪੂ 'ਤੇ ਲੋਕ ਦੁਨੀਆਂ ਵਿੱਚ ਸਭ ਤੋਂ ਲੰਬੀ ਅਤੇ ਨਰੋਈ ਜ਼ਿੰਦਗੀ ਜਿਊਂਦੇ ਹਨ। ਉਹਨਾਂ ਦਾ ਸਭ ਤੋਂ ਵੱਡਾ ਰਾਜ਼ ਹੈ 'ਇਕੀਗਾਈ'—ਹਰ ਸਵੇਰ ਖੁਸ਼ੀ ਨਾਲ ਉੱਠਣ ਦਾ ਇੱਕ ਪੱਕਾ ਮਕਸਦ। ਜਦੋਂ ਮਨੁੱਖ ਕੋਲ ਜ਼ਿੰਦਗੀ ਜਿਊਣ ਦਾ ਕੋਈ ਨੇਕ ਮਕਸਦ ਹੁੰਦਾ ਹੈ, ਤਾਂ ਚਿੰਤਾ ਅਤੇ ਤਣਾਅ ਆਪਣੇ ਆਪ ਖ਼ਤਮ ਹੋ ਜਾਂਦੇ ਹਨ।",
+            contentHi: "जापान के ओकिनावा द्वीप पर लोग दुनिया में सबसे लंबी और स्वस्थ ज़िंदगी जीते हैं। उनका सबसे बड़ा राज़ है 'इकिगाई'—हर सुबह खुशी से उठने की एक ठोस वजह। जब इंसान के पास जीवन का कोई सुंदर उद्देश्य होता है, तो तनाव दूर रहता है और मन हमेशा प्रसन्न रहता है।"
+          },
+          {
+            title: "Hara Hachi Bu: The 80% Eating Secret",
+            titlePa: "ਹਾਰਾ ਹਾਚੀ ਬੂ: 80 ਪ੍ਰਤੀਸ਼ਤ ਪੇਟ ਭਰਨ ਦਾ ਨਿਯਮ",
+            titleHi: "हारा हाची बू: 80% पेट भरने का नियम",
+            takeaway: "Stop eating when you feel 80% full to preserve vital energy and prevent disease.",
+            takeawayPa: "ਸਦਾ ਥੋੜ੍ਹੀ ਭੁੱਖ ਰੱਖ ਕੇ ਖਾਣਾ ਛੱਡੋ। ਇਹ ਸਰੀਰ ਨੂੰ ਹਲਕਾ ਅਤੇ ਬਿਮਾਰੀਆਂ ਤੋਂ ਮੁਕਤ ਰੱਖਦਾ ਹੈ।",
+            takeawayHi: "हमेशा थोड़ी भूख बाकी रखकर खाना छोड़ें। इससे शरीर हल्का और बीमारियों से दूर रहता है।",
+            content: "The ancient Okinawan rule 'Hara Hachi Bu' advises stopping eating when your stomach is 80 percent full. Overeating strains the digestive system, accelerates cellular aging, and drains energy. Eating light, natural foods and fresh water keeps organs young and healthy.",
+            contentPa: "ਓਕੀਨਾਵਾ ਦੇ ਲੋਕ ਖਾਣਾ ਖਾਂਦੇ ਸਮੇਂ ਇੱਕ ਪੁਰਾਣੀ ਕਹਾਵਤ ਯਾਦ ਰੱਖਦੇ ਹਨ: 'ਹਾਰਾ ਹਾਚੀ ਬੂ'। ਇਸਦਾ ਮਤਲਬ ਹੈ ਕਿ ਜਦੋਂ ਤੁਹਾਡਾ ਪੇਟ 80% ਭਰ ਜਾਵੇ, ਤਾਂ ਖਾਣਾ ਬੰਦ ਕਰ ਦਿਓ। ਜ਼ਿਆਦਾ ਖਾਣਾ ਹਾਜ਼ਮੇ ਨੂੰ ਖਰਾਬ ਕਰਦਾ ਹੈ ਅਤੇ ਬੁਢਾਪਾ ਜਲਦੀ ਲਿਆਉਂਦਾ ਹੈ। ਹਲਕਾ ਅਤੇ ਤਾਜ਼ਾ ਭੋਜਨ ਸਰੀਰ ਨੂੰ ਸਦਾ ਜਵਾਨ ਰੱਖਦਾ ਹੈ।",
+            contentHi: "ओकिनावा के बुजुर्ग भोजन करते समय एक पुराना नियम याद रखते हैं: 'हारा हाची बू'। इसका मतलब है कि जब पेट 80% भर जाए, तो खाना रोक दें। ज़रूरत से ज़्यादा खाना पाचन तंत्र को थका देता है और बुढ़ापा जल्दी लाता है। सादा और हल्का भोजन शरीर को दीर्घायु बनाता है।"
+          },
+          {
+            title: "Gentle Daily Movement and Friendship",
+            titlePa: "ਹਰ ਰੋਜ਼ ਹਲਕੀ ਕਸਰਤ ਅਤੇ ਮਿੱਤਰਾਂ ਦਾ ਸਾਥ",
+            titleHi: "रोज़ाना हल्का व्यायाम और अपनों का साथ",
+            takeaway: "You don't need heavy gyms; daily walking, gardening, and laughing with loved ones extends life.",
+            takeawayPa: "ਭਾਰੀ ਕਸਰਤ ਦੀ ਲੋੜ ਨਹੀਂ; ਰੋਜ਼ਾਨਾ ਸੈਰ, ਬਗੀਚੇ ਦਾ ਕੰਮ ਅਤੇ ਦੋਸਤਾਂ ਨਾਲ ਹੱਸਣਾ ਹੀ ਸਭ ਤੋਂ ਵੱਡੀ ਦਵਾਈ ਹੈ।",
+            takeawayHi: "कठिन कसरत की ज़रूरत नहीं; रोज़ाना टहलना, बागवानी और अपनों के साथ हंसना-बोलना ही असली दवा है।",
+            content: "Centenarians in Japan do not lift heavy weights. They walk daily, tend to their vegetables, stretch, and gather in warm friendship groups called Moai. Staying socially connected and moving gently every single day is the ultimate fountain of youth.",
+            contentPa: "ਲੰਬੀ ਉਮਰ ਭੋਗਣ ਵਾਲੇ ਬਜ਼ੁਰਗ ਕੋਈ ਭਾਰੀ ਜਿਮ ਨਹੀਂ ਜਾਂਦੇ। ਉਹ ਰੋਜ਼ ਸਵੇਰੇ-ਸ਼ਾਮ ਸੈਰ ਕਰਦੇ ਹਨ, ਰੁੱਖਾਂ-ਪੌਦਿਆਂ ਦੀ ਸੇਵਾ ਕਰਦੇ ਹਨ, ਅਤੇ ਦੋਸਤਾਂ-ਪਰਿਵਾਰ ਨਾਲ ਮਿਲ-ਬੈਠ ਕੇ ਹੱਸਦੇ ਹਨ। ਰੋਜ਼ਾਨਾ ਹਲਕੀ ਹਰਕਤ ਅਤੇ ਪਰਿਵਾਰਕ ਪਿਆਰ ਹੀ ਲੰਬੀ ਜ਼ਿੰਦਗੀ ਦਾ ਅਸਲ ਜਾਦੂ ਹੈ।",
+            contentHi: "सौ साल से अधिक जीने वाले बुजुर्ग कोई भारी जिम नहीं जाते। वे रोज़ाना सुबह-शाम टहलते हैं, पेड़-पौधों की देखभाल करते हैं, और दोस्तों के साथ बैठकर हंसते-बतियाते हैं। रोज़ाना हल्का चलना-फिरना और अपनों का प्रेम ही लंबी ज़िंदगी का सच्चा वरदान है।"
+          }
+        ]
+      },
+      {
+        id: "power-of-now",
+        title: "The Power of Now",
+        titlePa: "ਵਰਤਮਾਨ ਦੀ ਸ਼ਕਤੀ: ਮਨ ਦੀ ਸ਼ਾਂਤੀ ਦਾ ਰਾਜ਼",
+        titleHi: "वर्तमान की शक्ति: मन की सच्ची शांति",
+        author: "Eckhart Tolle",
+        authorPa: "ਐਕਹਾਰਟ ਟੋਲੇ",
+        authorHi: "एखार्ट टोले",
+        category: "Mindset",
+        color: "#0284c7",
+        bgGradient: "linear-gradient(135deg, #0284c7, #0369a1)",
+        description: "Free your mind from worry of the past and anxiety of the future by resting in the present moment.",
+        descriptionPa: "ਬੀਤ ਚੁੱਕੇ ਕੱਲ੍ਹ ਦੇ ਪਛਤਾਵੇ ਅਤੇ ਆਉਣ ਵਾਲੇ ਕੱਲ੍ਹ ਦੀ ਚਿੰਤਾ ਛੱਡ ਕੇ ਅੱਜ ਦੇ ਪਲ ਵਿੱਚ ਜਿਊਣਾ ਸਿੱਖੋ।",
+        descriptionHi: "बीते हुए कल के पछतावे और आने वाले कल की चिंता छोड़कर आज के वर्तमान पल में जीना सीखें।",
+        blinks: [
+          {
+            title: "You are Not Your Thoughts",
+            titlePa: "ਤੁਸੀਂ ਆਪਣੇ ਵਿਚਾਰ ਨਹੀਂ, ਵਿਚਾਰਾਂ ਨੂੰ ਦੇਖਣ ਵਾਲੇ ਹੋ",
+            titleHi: "आप अपने विचार नहीं, बल्कि विचारों के साक्षी हैं",
+            takeaway: "Step back and observe your busy mind without getting caught in non-stop thinking.",
+            takeawayPa: "ਆਪਣੇ ਮਨ ਵਿੱਚ ਚੱਲ ਰਹੇ ਬੇਲੋੜੇ ਵਿਚਾਰਾਂ ਤੋਂ ਪਿੱਛੇ ਹਟ ਕੇ ਸ਼ਾਂਤ ਹੋਣਾ ਸਿੱਖੋ।",
+            takeawayHi: "अपने मन में चल रहे व्यर्थ के विचारों से अलग होकर शांत रहना सीखें।",
+            content: "Most human suffering comes from excessive, compulsive thinking. The mind constantly replays past regrets or worries about future problems that may never happen. When you realize that you are the quiet awareness behind the chatter, true peace of mind arrives.",
+            contentPa: "ਮਨੁੱਖ ਦਾ ਬਹੁਤਾ ਦੁੱਖ ਬੇਲੋੜੀ ਸੋਚ-ਵਿਚਾਰ ਕਾਰਨ ਹੁੰਦਾ ਹੈ। ਮਨ ਜਾਂ ਤਾਂ ਪੁਰਾਣੇ ਦੁੱਖਾਂ ਨੂੰ ਯਾਦ ਕਰਦਾ ਰਹਿੰਦਾ ਹੈ ਜਾਂ ਭਵਿੱਖ ਦੇ ਡਰ ਪੈਦਾ ਕਰਦਾ ਹੈ। ਜਦੋਂ ਤੁਸੀਂ ਇਹ ਸਮਝ ਲੈਂਦੇ ਹੋ ਕਿ ਵਿਚਾਰ ਸਿਰਫ਼ ਬੱਦਲਾਂ ਵਾਂਗ ਆਉਂਦੇ-ਜਾਂਦੇ ਹਨ ਅਤੇ ਤੁਸੀਂ ਸ਼ਾਂਤ ਅਸਮਾਨ ਹੋ, ਤਾਂ ਮਨ ਵਿੱਚ ਅਥਾਹ ਸ਼ਾਂਤੀ ਆ ਜਾਂਦੀ ਹੈ।",
+            contentHi: "इंसान का अधिकांश दुख ज़रूरत से ज़्यादा सोचने से पैदा होता है। मन या तो बीती बातों का रोना रोता है या आने वाले कल का डर बनाता है। जब आप यह समझ लेते हैं कि विचार सिर्फ बादलों की तरह आते-जाते हैं और आप शांत आकाश हैं, तो मन को गहरी शांति मिलती है।"
+          },
+          {
+            title: "The Present Moment is All You Have",
+            titlePa: "ਸਿਰਫ਼ ਅੱਜ ਦਾ ਪਲ ਹੀ ਸੱਚ ਹੈ",
+            titleHi: "वर्तमान पल ही एकमात्र सच्चाई है",
+            takeaway: "Life is happening right now; peace is found by giving 100% presence to this very second.",
+            takeawayPa: "ਜ਼ਿੰਦਗੀ ਸਿਰਫ਼ ਅੱਜ ਅਤੇ ਹੁਣ ਦੇ ਪਲ ਵਿੱਚ ਹੈ। ਪੂਰੇ ਧਿਆਨ ਨਾਲ ਇਸ ਪਲ ਨੂੰ ਮਾਣੋ।",
+            takeawayHi: "ज़िंदगी केवल आज और अभी के पल में है। पूरी तरह वर्तमान में जीना सीखें।",
+            content: "Yesterday is gone, and tomorrow is not guaranteed. Everything you ever experience happens in the Now. Accept this present moment as if you had chosen it, and internal conflict dissolves immediately.",
+            contentPa: "ਬੀਤਿਆ ਹੋਇਆ ਕੱਲ੍ਹ ਲੰਘ ਚੁੱਕਾ ਹੈ ਅਤੇ ਕੱਲ੍ਹ ਦਾ ਕਿਸੇ ਨੂੰ ਪਤਾ ਨਹੀਂ। ਜੋ ਕੁਝ ਵੀ ਸਾਡੇ ਹੱਥ ਵਿੱਚ ਹੈ, ਉਹ ਸਿਰਫ਼ ਇਹ ਮੌਜੂਦਾ ਪਲ ਹੈ। ਜਦੋਂ ਤੁਸੀਂ ਹਰ ਕੰਮ—ਭਾਵੇਂ ਚਾਹ ਪੀਣਾ ਹੋਵੇ ਜਾਂ ਸੈਰ ਕਰਨਾ—ਪੂਰੇ ਮਨ ਨਾਲ ਕਰਦੇ ਹੋ, ਤਾਂ ਜ਼ਿੰਦਗੀ ਸੁੰਦਰ ਬਣ ਜਾਂਦੀ ਹੈ।",
+            contentHi: "बीता हुआ कल जा चुका है और कल का किसी को भरोसा नहीं। जो कुछ भी सच है, वह सिर्फ यह वर्तमान पल है। जब आप हर काम—चाहे चाय पीना हो या टहलना—पूरे मन से करते हैं, तो जीवन में कोई तनाव नहीं रहता।"
+          }
+        ]
+      },
+      {
+        id: "atomic-habits",
+        title: "Atomic Habits",
+        titlePa: "ਐਟਮਿਕ ਹੈਬਿਟਸ: ਛੋਟੀਆਂ ਆਦਤਾਂ, ਵੱਡੇ ਨਤੀਜੇ",
+        titleHi: "एटॉमिक हैबिट्स: छोटी आदतें, बड़े नतीजे",
+        author: "James Clear",
+        authorPa: "ਜੇਮਜ਼ ਕਲੀਅਰ",
+        authorHi: "जेम्स क्लियर",
+        category: "Productivity",
+        color: "#059669",
+        bgGradient: "linear-gradient(135deg, #059669, #065f46)",
+        description: "An easy and proven way to build good habits and break bad ones.",
+        descriptionPa: "ਚੰਗੀਆਂ ਆਦਤਾਂ ਬਣਾਉਣ ਅਤੇ ਮਾੜੀਆਂ ਆਦਤਾਂ ਤੋੜਨ ਦਾ ਸਾਬਤ ਤਰੀਕਾ।",
+        descriptionHi: "अच्छी आदतें बनाने और बुरी आदतें छोड़ने का अचूक तरीका।",
+        blinks: [
+          {
+            title: "The 1% Rule: Tiny Changes Make Big Results",
+            titlePa: "1% ਸੁਧਾਰ ਦਾ ਨਿਯਮ: ਛੋਟੀਆਂ ਤਬਦੀਲੀਆਂ ਵੱਡਾ ਫ਼ਰਕ ਪਾਉਂਦੀਆਂ ਹਨ",
+            titleHi: "1% सुधार का नियम: छोटे बदलाव बड़ा असर लाते हैं",
+            takeaway: "Getting 1% better each day compounds into 37x improvement by the end of one year.",
+            takeawayPa: "ਹਰ ਰੋਜ਼ ਸਿਰਫ਼ 1% ਬਿਹਤਰ ਬਣਨ ਨਾਲ ਸਾਲ ਦੇ ਅੰਤ ਵਿੱਚ ਤੁਸੀਂ 37 ਗੁਣਾ ਬਿਹਤਰ ਬਣ ਜਾਂਦੇ ਹੋ।",
+            takeawayHi: "हर दिन सिर्फ 1% बेहतर बनने से साल के अंत तक आप 37 गुना बेहतर बन जाते हैं।",
+            content: "Habits are the compound interest of self-improvement. Just as money multiplies through compound interest, the effects of your habits multiply as you repeat them. Small daily habits produce monumental long-term results.",
+            contentPa: "ਆਦਤਾਂ ਖੁਦ ਵਿੱਚ ਸੁਧਾਰ ਕਰਨ ਦਾ ਚੱਕਰਵਰਧੀ ਵਿਆਜ ਹਨ। ਜਿਵੇਂ ਪੈਸਾ ਵਿਆਜ ਨਾਲ ਵਧਦਾ ਹੈ, ਉਸੇ ਤਰ੍ਹਾਂ ਆਦਤਾਂ ਦੇ ਪ੍ਰਭਾਵ ਵਾਰ-ਵਾਰ ਦੁਹਰਾਉਣ ਨਾਲ ਗੁਣਾ ਹੁੰਦੇ ਹਨ। ਰੋਜ਼ਾਨਾ ਦੀਆਂ ਛੋਟੀਆਂ ਆਦਤਾਂ ਹੀ ਵੱਡੇ ਨਤੀਜੇ ਲਿਆਉਂਦੀਆਂ ਹਨ।",
+            contentHi: "आदतें खुद में सुधार करने का चक्रवृद्धि ब्याज हैं। जैसे पैसा ब्याज से बढ़ता है, वैसे ही आदतें दोहराने से कई गुना असर करती हैं। रोज़मर्रा की छोटी आदतें ही बड़ा चमत्कार करती हैं।"
+          }
+        ]
+      },
+      {
+        id: "psychology-of-money",
+        title: "The Psychology of Money",
+        titlePa: "ਪੈਸੇ ਦਾ ਮਨੋਵਿਗਿਆਨ: ਦੌਲਤ ਅਤੇ ਖੁਸ਼ੀ",
+        titleHi: "धन का मनोविज्ञान: दौलत और खुशी",
+        author: "Morgan Housel",
+        authorPa: "ਮੋਰਗਨ ਹਾਊਜ਼ਲ",
+        authorHi: "मॉर्गन हाउसल",
+        category: "Finance",
+        color: "#0284c7",
+        bgGradient: "linear-gradient(135deg, #0284c7, #0369a1)",
+        description: "Doing well with money isn’t about intelligence; it’s about behavior and emotional discipline.",
+        descriptionPa: "ਪੈਸੇ ਨਾਲ ਅਮੀਰ ਹੋਣਾ ਦਿਮਾਗ ਨਾਲੋਂ ਤੁਹਾਡੇ ਵਿਵਹਾਰ ਅਤੇ ਸਬਰ 'ਤੇ ਨਿਰਭਰ ਕਰਦਾ ਹੈ।",
+        descriptionHi: "पैसे के मामले में समझदार होना बुद्धिमत्ता से ज्यादा आपके व्यवहार और धैर्य पर निर्भर करता है।",
+        blinks: [
+          {
+            title: "Wealth is What You Don't See",
+            titlePa: "ਅਸਲ ਦੌਲਤ ਉਹ ਹੈ ਜੋ ਦਿਖਾਈ ਨਹੀਂ ਦਿੰਦੀ",
+            titleHi: "सच्ची दौलत वह है जो दिखाई नहीं देती",
+            takeaway: "Spending money to show people how much money you have is the fastest way to have less money.",
+            takeawayPa: "ਦੂਜਿਆਂ ਨੂੰ ਦਿਖਾਉਣ ਲਈ ਪੈਸਾ ਖਰਚਣਾ, ਪੈਸਾ ਗੁਆਉਣ ਦਾ ਸਭ ਤੋਂ ਤੇਜ਼ ਤਰੀਕਾ ਹੈ।",
+            takeawayHi: "दूसरों को दिखाने के लिए पैसा खर्च करना, पैसा गंवाने का सबसे तेज तरीका है।",
+            content: "We judge wealth by fancy cars and big houses. But real wealth is the money not spent—the savings and financial security safely in your bank account that gives you peaceful sleep.",
+            contentPa: "ਅਸੀਂ ਅਕਸਰ ਮਹਿੰਗੀਆਂ ਗੱਡੀਆਂ ਜਾਂ ਵੱਡੇ ਘਰਾਂ ਨੂੰ ਅਮੀਰੀ ਸਮਝਦੇ ਹਾਂ, ਪਰ ਇਹ ਸਿਰਫ਼ ਦਿਖਾਵਾ ਹੈ। ਅਸਲ ਦੌਲਤ ਉਹ ਪੈਸਾ ਹੈ ਜੋ ਤੁਸੀਂ ਬਚਾ ਕੇ ਰੱਖਿਆ ਹੈ ਅਤੇ ਜੋ ਤੁਹਾਨੂੰ ਚੈਨ ਦੀ ਨੀਂਦ ਦਿੰਦਾ ਹੈ।",
+            contentHi: "हम अक्सर महंगी गाड़ियों या बड़े घरों को अमीरी समझ लेते हैं, लेकिन यह सिर्फ दिखावा है। असली दौलत वह पैसा है जो आपने बचाकर रखा है और जो आपको सुकून और आजादी देता है।"
+          }
+        ]
+      },
+      {
+        id: "how-to-win-friends",
+        title: "How to Win Friends and Influence People",
+        titlePa: "ਦੋਸਤ ਕਿਵੇਂ ਬਣਾਈਏ ਅਤੇ ਲੋਕਾਂ ਦੇ ਦਿਲ ਕਿਵੇਂ ਜਿੱਤੀਏ",
+        titleHi: "लोक व्यवहार: प्रभावशाली व्यक्तित्व और संबंध बनाने की कला",
+        author: "Dale Carnegie",
+        authorPa: "ਡੇਲ ਕਾਰਨੇਗੀ",
+        authorHi: "डेल कार्नेगी",
+        category: "Relationships",
+        color: "#d97706",
+        bgGradient: "linear-gradient(135deg, #d97706, #b45309)",
+        description: "Timeless rules for winning hearts, listening genuinely, and inspiring cooperation.",
+        descriptionPa: "ਲੋਕਾਂ ਦੇ ਦਿਲ ਜਿੱਤਣ, ਪਿਆਰ ਨਾਲ ਗੱਲ ਕਰਨ ਅਤੇ ਆਦਰ-ਮਾਣ ਪਾਉਣ ਦੇ ਸਦੀਵੀ ਨਿਯਮ।",
+        descriptionHi: "लोगों के दिलों को जीतने, मीठी वाणी बोलने और सच्चा सम्मान पाने के शाश्वत नियम।",
+        blinks: [
+          {
+            title: "Never Criticize or Complain",
+            titlePa: "ਕਦੇ ਵੀ ਕਿਸੇ ਦੀ ਨਿੰਦਾ ਜਾਂ ਨੁਕਤਾਚੀਨੀ ਨਾ ਕਰੋ",
+            titleHi: "कभी किसी की आलोचना या शिकायत न करें",
+            takeaway: "Criticism hurts human pride. Lead with kind understanding and forgiveness.",
+            takeawayPa: "ਨੁਕਤਾਚੀਨੀ ਕਰਨ ਨਾਲ ਦੂਜੇ ਦਾ ਦਿਲ ਦੁਖਦਾ ਹੈ। ਹਮੇਸ਼ਾ ਪਿਆਰ ਅਤੇ ਸਮਝਦਾਰੀ ਨਾਲ ਸਮਝਾਓ।",
+            takeawayHi: "आलोचना करने से सामने वाले का दिल दुखता है। हमेशा प्रेम और समझदारी से काम लें।",
+            content: "Human beings are creatures of emotion. When you criticize someone, they immediately build defensive walls. Any fool can criticize, but it takes character and self-control to be understanding and forgiving.",
+            contentPa: "ਇਨਸਾਨ ਜਜ਼ਬਾਤੀ ਹੁੰਦਾ ਹੈ। ਜਦੋਂ ਤੁਸੀਂ ਕਿਸੇ 'ਤੇ ਗੁੱਸਾ ਕਰਦੇ ਹੋ ਜਾਂ ਉਸਦੀ ਨਿੰਦਾ ਕਰਦੇ ਹੋ, ਤਾਂ ਉਹ ਤੁਹਾਡੇ ਵਿਰੁੱਧ ਹੋ ਜਾਂਦਾ ਹੈ। ਕਿਸੇ ਦੀ ਗਲਤੀ ਕੱਢਣਾ ਬਹੁਤ ਆਸਾਨ ਹੈ, ਪਰ ਪਿਆਰ ਨਾਲ ਮਾਫ਼ ਕਰਨਾ ਅਤੇ ਸਮਝਾਉਣਾ ਹੀ ਸੱਚੇ ਇਨਸਾਨ ਦੀ ਪਛਾਣ ਹੈ।",
+            contentHi: "इंसान भावनाओं से चलता है। जब आप किसी की आलोचना करते हैं, तो वह खुद का बचाव करने लगता है। किसी की गलती निकालना बहुत आसान है, लेकिन माफ करना और प्यार से समझाना ही सज्जन व्यक्ति की पहचान है।"
+          }
+        ]
+      },
+      {
+        id: "7-habits",
+        title: "The 7 Habits of Highly Effective People",
+        titlePa: "ਪ੍ਰਭਾਵਸ਼ਾਲੀ ਲੋਕਾਂ ਦੀਆਂ 7 ਆਦਤਾਂ",
+        titleHi: "अति प्रभावी लोगों की 7 आदतें",
+        author: "Stephen Covey",
+        authorPa: "ਸਟੀਫਨ ਕੋਵੇ",
+        authorHi: "स्टीफन कोवे",
+        category: "Productivity",
+        color: "#475569",
+        bgGradient: "linear-gradient(135deg, #475569, #334155)",
+        description: "A principle-centered approach for solving personal and professional problems.",
+        descriptionPa: "ਜ਼ਿੰਦਗੀ ਵਿੱਚ ਅਸੂਲਾਂ 'ਤੇ ਚੱਲਣ ਅਤੇ ਪਰਿਵਾਰਕ ਤੇ ਨਿੱਜੀ ਸਫਲਤਾ ਹਾਸਲ ਕਰਨ ਦੇ 7 ਨਿਯਮ।",
+        descriptionHi: "सिद्धांतों पर आधारित जीवन जीने और व्यक्तिगत व पारिवारिक सफलता पाने के 7 नियम।",
+        blinks: [
+          {
+            title: "Focus on What You Can Control",
+            titlePa: "ਸਿਰਫ਼ ਉਹਨਾਂ ਗੱਲਾਂ 'ਤੇ ਧਿਆਨ ਦਿਓ ਜੋ ਤੁਹਾਡੇ ਵੱਸ ਵਿੱਚ ਹਨ",
+            titleHi: "सिर्फ उन्हीं बातों पर ध्यान दें जो आपके वश में हैं",
+            takeaway: "Do not waste mental energy worrying about things you cannot change.",
+            takeawayPa: "ਉਹਨਾਂ ਗੱਲਾਂ ਬਾਰੇ ਚਿੰਤਾ ਕਰਕੇ ਸਮਾਂ ਨਾ ਗੁਆਓ ਜਿਨ੍ਹਾਂ ਨੂੰ ਤੁਸੀਂ ਬਦਲ ਨਹੀਂ ਸਕਦੇ।",
+            takeawayHi: "उन बातों की चिंता में समय व्यर्थ न करें जिन्हें आप बदल नहीं सकते।",
+            content: "Reactive people worry about the weather, politics, or other people's faults. Proactive people focus on what they can control: their own health, words, kindness, and reactions.",
+            contentPa: "ਕਮਜ਼ੋਰ ਲੋਕ ਮੌਸਮ ਜਾਂ ਦੂਜਿਆਂ ਦੀਆਂ ਕਮੀਆਂ ਬਾਰੇ ਸ਼ਿਕਾਇਤ ਕਰਦੇ ਹਨ। ਪਰ ਸਮਝਦਾਰ ਵਿਅਕਤੀ ਸਿਰਫ਼ ਆਪਣੀ ਸਿਹਤ, ਆਪਣੇ ਬੋਲ ਅਤੇ ਆਪਣੇ ਵਿਵਹਾਰ 'ਤੇ ਧਿਆਨ ਦਿੰਦਾ ਹੈ।",
+            contentHi: "कमज़ोर लोग मौसम या दूसरों की कमियों की शिकायत करते रहते हैं। लेकिन समझदार इंसान अपनी सेहत, अपनी वाणी और अपने व्यवहार को सुधारता है।"
+          }
+        ]
+      },
+      {
+        id: "rich-dad-poor-dad",
+        title: "Rich Dad Poor Dad",
+        titlePa: "ਅਮੀਰ ਡੈਡ, ਗਰੀਬ ਡੈਡ: ਪੈਸੇ ਦੀ ਸੱਚੀ ਸਿੱਖਿਆ",
+        titleHi: "रिच डैड पुअर डैड: वित्तीय आज़ादी की सच्ची शिक्षा",
+        author: "Robert Kiyosaki",
+        authorPa: "ਰੌਬਰਟ ਕਿਓਸਾਕੀ",
+        authorHi: "रॉबर्ट कियोसाकी",
+        category: "Finance",
+        color: "#b45309",
+        bgGradient: "linear-gradient(135deg, #b45309, #78350f)",
+        description: "What the rich teach their kids about money that the poor and middle class do not.",
+        descriptionPa: "ਪੈਸੇ ਲਈ ਕੰਮ ਕਰਨ ਦੀ ਬਜਾਏ ਪੈਸੇ ਨੂੰ ਆਪਣੇ ਲਈ ਕੰਮ 'ਤੇ ਕਿਵੇਂ ਲਗਾਈਏ।",
+        descriptionHi: "पैसे के लिए काम करने के बजाय पैसे से अपने लिए काम कैसे करवाएं।",
+        blinks: [
+          {
+            title: "Assets vs. Liabilities",
+            titlePa: "ਸੰਪੱਤੀ (ਐਸੇਟ) ਬਨਾਮ ਖਰਚਾ (ਲਾਇਬਿਲਟੀ)",
+            titleHi: "संपत्ति बनाम देनदारी",
+            takeaway: "An asset puts money in your pocket. A liability takes money out of your pocket.",
+            takeawayPa: "ਸੰਪੱਤੀ ਉਹ ਹੈ ਜੋ ਤੁਹਾਡੀ ਜੇਬ ਵਿੱਚ ਪੈਸਾ ਪਾਵੇ; ਖਰਚਾ ਉਹ ਹੈ ਜੋ ਤੁਹਾਡੀ ਜੇਬ ਵਿੱਚੋਂ ਪੈਸਾ ਕੱਢੇ।",
+            takeawayHi: "संपत्ति वह है जो आपकी जेब में पैसा डाले; देनदारी वह है जो आपकी जेब से पैसा निकाले।",
+            content: "The rich acquire income-producing assets (investments, land, businesses). The middle class buys liabilities that they think are assets (costly loans, depreciating luxury goods). Buy things that grow and generate cash flow.",
+            contentPa: "ਸਮਝਦਾਰ ਲੋਕ ਉਹ ਚੀਜ਼ਾਂ ਖਰੀਦਦੇ ਹਨ ਜੋ ਉਹਨਾਂ ਨੂੰ ਕਮਾਈ ਕਰਕੇ ਦਿੰਦੀਆਂ ਹਨ। ਪਰ ਆਮ ਲੋਕ ਮਹਿੰਗੇ ਸ਼ੌਂਕਾਂ ਅਤੇ ਕਰਜ਼ਿਆਂ ਵਿੱਚ ਪੈਸਾ ਫਸਾ ਲੈਂਦੇ ਹਨ। ਸਦਾ ਅਜਿਹੀ ਜਗ੍ਹਾ ਪੈਸਾ ਲਗਾਓ ਜੋ ਸਮੇਂ ਦੇ ਨਾਲ ਵਧੇ।",
+            contentHi: "अमीर लोग ऐसी संपत्तियां खरीदते हैं जो उन्हें नियमित आय देती हैं। लेकिन मध्यम वर्ग ऐसी चीज़ें खरीदता है जो सिर्फ खर्च बढ़ाती हैं। हमेशा ऐसी जगह बचत लगाएं जो भविष्य में सुरक्षित आमदनी दे।"
+          }
+        ]
+      },
+      {
+        id: "deep-work",
+        title: "Deep Work",
+        titlePa: "ਡੂੰਘਾ ਕੰਮ: ਪੂਰੀ ਇਕਾਗਰਤਾ ਦੀ ਸ਼ਕਤੀ",
+        titleHi: "डीप वर्क: पूरी एकाग्रता की ताकत",
+        author: "Cal Newport",
+        authorPa: "ਕੈਲ ਨਿਊਪੋਰਟ",
+        authorHi: "कैल न्यूपोर्ट",
+        category: "Productivity",
+        color: "#7c3aed",
+        bgGradient: "linear-gradient(135deg, #7c3aed, #5b21b6)",
+        description: "Rules for focused success in a distracted world.",
+        descriptionPa: "ਫ਼ੋਨ ਅਤੇ ਸੋਸ਼ਲ ਮੀਡੀਆ ਦੇ ਰੌਲੇ ਵਿੱਚ ਬਿਨਾਂ ਰੁਕਾਵਟ ਇਕਾਗਰ ਹੋ ਕੇ ਕੰਮ ਕਰਨ ਦਾ ਹੁਨਰ।",
+        descriptionHi: "फोन और सोशल मीडिया के भटकाव से दूर रहकर पूरी एकाग्रता से काम करने की कला।",
+        blinks: [
+          {
+            title: "Deep Work is a Rare Superpower",
+            titlePa: "ਡੂੰਘਾ ਧਿਆਨ ਇੱਕ ਮਹਾਨ ਸ਼ਕਤੀ ਹੈ",
+            titleHi: "गहन ध्यान एक महाशक्ति है",
+            takeaway: "The ability to focus without distraction is becoming rare and extremely valuable.",
+            takeawayPa: "ਬਿਨਾਂ ਕਿਸੇ ਭਟਕਾਅ ਦੇ ਧਿਆਨ ਲਗਾਉਣਾ ਅੱਜ ਦੀ ਦੁਨੀਆਂ ਵਿੱਚ ਸਭ ਤੋਂ ਕੀਮਤੀ ਹੁਨਰ ਹੈ।",
+            takeawayHi: "बिना किसी भटकाव के ध्यान लगाना आज की दुनिया में सबसे कीमती हुनर है।",
+            content: "Constant notifications and multitasking scatter your mental energy. Those who master the ability to disconnect and dive deep into their work will always outperform the rest.",
+            contentPa: "ਲਗਾਤਾਰ ਫ਼ੋਨ ਦੇ ਸੁਨੇਹੇ ਦਿਮਾਗ ਨੂੰ ਥਕਾ ਦਿੰਦੇ ਹਨ। ਜੋ ਵਿਅਕਤੀ ਫ਼ੋਨ ਪਾਸੇ ਰੱਖ ਕੇ ਸ਼ਾਂਤੀ ਨਾਲ ਕੰਮ ਕਰਨਾ ਸਿੱਖ ਲੈਂਦਾ ਹੈ, ਉਹ ਜ਼ਿੰਦਗੀ ਵਿੱਚ ਸਦਾ ਅੱਗੇ ਰਹਿੰਦਾ ਹੈ।",
+            contentHi: "लगातार फोन के मैसेज दिमाग को भटका देते हैं। जो इंसान फोन अलग रखकर शांति से काम करता है, वह जीवन में हमेशा आगे रहता है।"
+          }
+        ]
+      },
+      {
+        id: "thinking-fast-and-slow",
+        title: "Thinking, Fast and Slow",
+        titlePa: "ਤੇਜ਼ ਅਤੇ ਹੌਲੀ ਸੋਚ: ਫੈਸਲਿਆਂ ਦਾ ਵਿਗਿਆਨ",
+        titleHi: "तेज़ और धीमी सोच: फैसलों का विज्ञान",
+        author: "Daniel Kahneman",
+        authorPa: "ਡੈਨੀਅਲ ਕਾਹਨੇਮੈਨ",
+        authorHi: "डैनियल काह्नमैन",
+        category: "Mindset",
+        color: "#ea580c",
+        bgGradient: "linear-gradient(135deg, #ea580c, #c2410c)",
+        description: "Two systems drive human thought: fast emotion and slow logic.",
+        descriptionPa: "ਸਾਡਾ ਦਿਮਾਗ ਦੋ ਤਰੀਕਿਆਂ ਨਾਲ ਕੰਮ ਕਰਦਾ ਹੈ: ਤੇਜ਼ ਜਜ਼ਬਾਤੀ ਸੋਚ ਅਤੇ ਹੌਲੀ ਤਰਕਸ਼ੀਲ ਸੋਚ।",
+        descriptionHi: "हमारा दिमाग दो तरह से सोचता है: तेज़ जज़्बाती सोच और धीमी समझदारी भरी सोच।",
+        blinks: [
+          {
+            title: "System 1 and System 2",
+            titlePa: "ਸਿਸਟਮ ੧ ਅਤੇ ਸਿਸਟਮ ੨",
+            titleHi: "सिस्टम 1 और सिस्टम 2",
+            takeaway: "Never make life-changing decisions purely on momentary emotion.",
+            takeawayPa: "ਜ਼ਿੰਦਗੀ ਦੇ ਵੱਡੇ ਫੈਸਲੇ ਕਦੇ ਵੀ ਜਲਦਬਾਜ਼ੀ ਜਾਂ ਗੁੱਸੇ ਵਿੱਚ ਨਹੀਂ ਲੈਣੇ ਚਾਹੀਦੇ।",
+            takeawayHi: "जीवन के बड़े फैसले कभी भी जल्दबाज़ी या गुस्से में नहीं लेने चाहिए।",
+            content: "System 1 makes rapid emotional calls. System 2 is deliberate reflection. Sleep on big decisions and let logic settle before acting.",
+            contentPa: "ਸਿਸਟਮ ੧ ਤੁਰੰਤ ਪ੍ਰਤੀਕਿਰਿਆ ਦਿੰਦਾ ਹੈ ਪਰ ਸਿਸਟਮ ੨ ਸੋਚ-ਵਿਚਾਰ ਕਰਦਾ ਹੈ। ਵੱਡੇ ਫੈਸਲੇ ਲੈਣ ਤੋਂ ਪਹਿਲਾਂ ਠੰਡੇ ਦਿਮਾਗ ਨਾਲ ਸੋਚੋ।",
+            contentHi: "सिस्टम 1 तुरंत प्रतिक्रिया देता है, लेकिन सिस्टम 2 सोच-विचार करता है। बड़े फैसले हमेशा ठंडे दिमाग से विचार करके ही लें।"
+          }
+        ]
+      },
+      {
+        id: "sapiens",
+        title: "Sapiens: A Brief History of Humankind",
+        titlePa: "ਸੇਪੀਅਨਜ਼: ਮਨੁੱਖਜਾਤੀ ਦਾ ਸੰਖੇਪ ਇਤਿਹਾਸ",
+        titleHi: "सेपियन्स: मानव जाति का संक्षिप्त इतिहास",
+        author: "Yuval Noah Harari",
+        authorPa: "ਯੁਵਲ ਨੋਆਹ ਹਰਾਰੀ",
+        authorHi: "युवल नोआह हरारी",
+        category: "Health & Life",
+        color: "#0d9488",
+        bgGradient: "linear-gradient(135deg, #0d9488, #115e59)",
+        description: "How an insignificant ape became the ruler of planet Earth through cooperation.",
+        descriptionPa: "ਇੱਕ ਆਮ ਜੀਵ ਕਿਵੇਂ ਆਪਸੀ ਸਹਿਯੋਗ ਅਤੇ ਸਾਂਝੇ ਵਿਸ਼ਵਾਸ ਨਾਲ ਧਰਤੀ ਦਾ ਮਾਲਕ ਬਣ ਗਿਆ।",
+        descriptionHi: "एक साधारण प्राणी कैसे आपसी सहयोग और साझा विश्वास के बल पर पृथ्वी का स्वामी बन गया।",
+        blinks: [
+          {
+            title: "The Power of Shared Beliefs",
+            titlePa: "ਸਾਂਝੇ ਵਿਸ਼ਵਾਸ ਅਤੇ ਕਹਾਣੀਆਂ ਦੀ ਸ਼ਕਤੀ",
+            titleHi: "साझा विश्वास की अद्भूत शक्ति",
+            takeaway: "Humans rule the world because we can cooperate flexibly in millions based on shared values.",
+            takeawayPa: "ਮਨੁੱਖ ਨੇ ਧਰਤੀ 'ਤੇ ਇਸ ਲਈ ਰਾਜ ਕੀਤਾ ਕਿਉਂਕਿ ਅਸੀਂ ਲੱਖਾਂ ਦੀ ਗਿਣਤੀ ਵਿੱਚ ਮਿਲ ਕੇ ਕੰਮ ਕਰ ਸਕਦੇ ਹਾਂ।",
+            takeawayHi: "मानव ने पृथ्वी पर इसलिए राज किया क्योंकि हम लाखों की संख्या में मिल-जुलकर काम कर सकते हैं।",
+            content: "Ants cooperate only with family; humans cooperate with complete strangers through shared values, trade, and laws. Cooperation is humanity’s greatest strength.",
+            contentPa: "ਇਨਸਾਨ ਦੀ ਸਭ ਤੋਂ ਵੱਡੀ ਤਾਕਤ ਮਿਲ ਕੇ ਕੰਮ ਕਰਨਾ ਅਤੇ ਇੱਕ-ਦੂਜੇ 'ਤੇ ਭਰੋਸਾ ਕਰਨਾ ਹੈ। ਸਹਿਯੋਗ ਨਾਲ ਹੀ ਵੱਡੇ ਸਮਾਜ ਅਤੇ ਦੇਸ਼ ਬਣਦੇ ਹਨ।",
+            contentHi: "इंसान की सबसे बड़ी ताकत मिल-जुलकर रहना और एक-दूसरे पर विश्वास करना है। इसी एकता से बड़े समाज और देश बनते हैं।"
+          }
+        ]
+      }
+    ];
+
+    /* ==========================================================================
+       APP STATE
+       ========================================================================== */
+    let currentLanguage = 'pa'; // 'pa', 'hi', or 'en'
+    let currentBook = null;
+    let currentBlinkIndex = 0;
+    let selectedCategory = 'All';
+    let savedBooks = JSON.parse(localStorage.getItem('qb_saved_books') || '[]');
+    let currentTheme = localStorage.getItem('qb_theme') || 'light';
+    let isElderMode = localStorage.getItem('qb_elder_mode') === 'true';
+
+    // Bulletproof Audio Engine State
+    let speechSynth = window.speechSynthesis;
+    let isAudioPlaying = false;
+    let activeSentenceIndex = 0;
+    let currentSentences = [];
+    let userSelectedVoice = null;
+    let detectedVoices = [];
+    let audioPlaybackRate = 1.0;
+    let sleepTimerTimeout = null;
+    let sleepTimerMinutes = 0;
+
+    // Mobile Audio Unlock Flag
+    let audioUnlocked = false;
+
+    /* ==========================================================================
+       INITIALIZATION & MOBILE AUDIO UNLOCK
+       ========================================================================== */
+    function init() {
+      applyTheme(currentTheme);
+      applyElderMode(isElderMode);
+      initVoiceEngine();
+      updateLanguageUI();
+      renderBooks();
+      renderLibrary();
+
+      // Mobile Touch Audio Unlocker
+      const unlock = () => {
+        if (!audioUnlocked && speechSynth) {
+          try {
+            const silent = new SpeechSynthesisUtterance('');
+            silent.volume = 0.01;
+            speechSynth.speak(silent);
+            audioUnlocked = true;
+          } catch(e) {}
+        }
+      };
+      document.addEventListener('touchstart', unlock, { once: true });
+      document.addEventListener('click', unlock, { once: true });
+    }
+
+    function setGlobalLanguage(lang) {
+      currentLanguage = lang;
+      updateLanguageUI();
+      renderBooks();
+      renderLibrary();
+
+      if (document.getElementById('reader-view').classList.contains('active')) {
+        renderReaderBlink();
+      }
+
+      if (isAudioPlaying) {
+        startAudioForBook(currentBook ? currentBook.id : 'ikigai');
+      } else {
+        updateDiagnosticBanner();
+      }
+    }
+
+    function updateLanguageUI() {
+      document.getElementById('pill-pa').className = `lang-pill ${currentLanguage === 'pa' ? 'active-pa' : ''}`;
+      document.getElementById('pill-hi').className = `lang-pill ${currentLanguage === 'hi' ? 'active-hi' : ''}`;
+      document.getElementById('pill-en').className = `lang-pill ${currentLanguage === 'en' ? 'active' : ''}`;
+
+      const featured = BOOKS[0];
+      if (currentLanguage === 'pa') {
+        document.getElementById('hero-title').textContent = featured.title;
+        document.getElementById('hero-title-native').textContent = featured.titlePa;
+        document.getElementById('hero-desc').textContent = featured.descriptionPa;
+      } else if (currentLanguage === 'hi') {
+        document.getElementById('hero-title').textContent = featured.title;
+        document.getElementById('hero-title-native').textContent = featured.titleHi;
+        document.getElementById('hero-desc').textContent = featured.descriptionHi;
+      } else {
+        document.getElementById('hero-title').textContent = featured.title;
+        document.getElementById('hero-title-native').textContent = featured.author;
+        document.getElementById('hero-desc').textContent = featured.description;
+      }
+      updateDiagnosticBanner();
+    }
+
+    /* ==========================================================================
+       ROBUST VOICE ENGINE WITH SMART SCRIPT MATCHING (Zero Crashes)
+       ========================================================================== */
+    function initVoiceEngine() {
+      if (!speechSynth) {
+        document.getElementById('diag-voice-status').textContent = '⚠️ Speech Synthesis not supported in this browser';
+        return;
+      }
+
+      function loadVoices() {
+        detectedVoices = speechSynth.getVoices();
+        populateVoiceSelects(detectedVoices);
+        updateDiagnosticBanner();
+      }
+
+      loadVoices();
+      if (speechSynth.onvoiceschanged !== undefined) {
+        speechSynth.onvoiceschanged = loadVoices;
+      }
+    }
+
+    function populateVoiceSelects(voices) {
+      const select = document.getElementById('header-voice-select');
+      select.innerHTML = '<option value="">Auto Detect Best Voice</option>';
+
+      voices.forEach((v, i) => {
+        const isPa = v.lang.startsWith('pa') || v.name.toLowerCase().includes('punjabi') || v.name.toLowerCase().includes('gurmukhi');
+        const isHi = v.lang.startsWith('hi') || v.name.toLowerCase().includes('hindi');
+        const opt = document.createElement('option');
+        opt.value = i;
+        opt.textContent = `${isPa ? '🇮🇳 [ਪੰਜਾਬੀ] ' : (isHi ? '🇮🇳 [हिन्दी] ' : '')}${v.name} (${v.lang})`;
+        select.appendChild(opt);
+      });
+    }
+
+    function onUserSelectVoice(val) {
+      if (val === "") {
+        userSelectedVoice = null;
+      } else {
+        userSelectedVoice = detectedVoices[parseInt(val)];
+      }
+      updateDiagnosticBanner();
+      if (isAudioPlaying) {
+        stopSpeech();
+        playCurrentBlinkAudio();
+      }
+    }
+
+    function getActiveVoice() {
+      if (userSelectedVoice) return userSelectedVoice;
+
+      if (!detectedVoices || detectedVoices.length === 0) {
+        detectedVoices = speechSynth ? speechSynth.getVoices() : [];
+      }
+
+      if (currentLanguage === 'pa') {
+        const paVoice = detectedVoices.find(v => 
+          v.lang.toLowerCase().startsWith('pa') || 
+          v.name.toLowerCase().includes('punjabi') || 
+          v.name.toLowerCase().includes('gurmukhi')
+        );
+        if (paVoice) return paVoice;
+
+        const hiVoice = detectedVoices.find(v => v.lang.toLowerCase().startsWith('hi') || v.name.toLowerCase().includes('hindi'));
+        if (hiVoice) return hiVoice;
+      } else if (currentLanguage === 'hi') {
+        const hiVoice = detectedVoices.find(v => v.lang.toLowerCase().startsWith('hi') || v.name.toLowerCase().includes('hindi'));
+        if (hiVoice) return hiVoice;
+      }
+
+      // Default to Indian English or English
+      return detectedVoices.find(v => v.lang.toLowerCase().startsWith('en-in')) || 
+             detectedVoices.find(v => v.lang.toLowerCase().startsWith('en')) || 
+             (detectedVoices.length > 0 ? detectedVoices[0] : null);
+    }
+
+    function updateDiagnosticBanner() {
+      const voice = getActiveVoice();
+      const statusSpan = document.getElementById('diag-voice-status');
+      const noteSpan = document.getElementById('diag-fallback-note');
+      const playerBadge = document.getElementById('player-voice-badge');
+
+      if (!voice) {
+        statusSpan.textContent = 'Voice engine ready (Waiting for sound activation)';
+        noteSpan.textContent = '';
+        return;
+      }
+
+      const isPa = voice.lang.startsWith('pa') || voice.name.toLowerCase().includes('punjabi') || voice.name.toLowerCase().includes('gurmukhi');
+      const isHi = voice.lang.startsWith('hi') || voice.name.toLowerCase().includes('hindi');
+
+      if (currentLanguage === 'pa') {
+        if (isPa) {
+          statusSpan.textContent = `✓ Active Voice: ${voice.name} (Authentic Punjabi)`;
+          noteSpan.textContent = '';
+          playerBadge.textContent = '🎙️ ਪੰਜਾਬੀ Voice';
+        } else if (isHi) {
+          statusSpan.textContent = `✓ Active Voice: ${voice.name} (Hindi/Indian Voice)`;
+          noteSpan.textContent = 'ℹ️ ਪੰਜਾਬੀ ਆਵਾਜ਼ ਨਹੀਂ ਮਿਲੀ — ਹਿੰਦੀ ਵਿੱਚ ਸੁਣਾਇਆ ਜਾਵੇਗਾ';
+          playerBadge.textContent = '🎙️ Indian Hindi Voice';
+        } else {
+          statusSpan.textContent = `✓ Active Voice: ${voice.name} (English Voice)`;
+          noteSpan.textContent = 'ℹ️ ਪੰਜਾਬੀ/ਹਿੰਦੀ ਆਵਾਜ਼ ਨਹੀਂ ਮਿਲੀ — ਅੰਗਰੇਜ਼ੀ ਵਿੱਚ ਸੁਣਾਇਆ ਜਾਵੇਗਾ';
+          playerBadge.textContent = '🎙️ English Audio Voice';
+        }
+      } else if (currentLanguage === 'hi') {
+        if (isHi) {
+          statusSpan.textContent = `✓ Active Voice: ${voice.name} (Hindi)`;
+          noteSpan.textContent = '';
+          playerBadge.textContent = '🎙️ हिन्दी Voice';
+        } else {
+          statusSpan.textContent = `✓ Active Voice: ${voice.name} (English Voice)`;
+          noteSpan.textContent = 'ℹ️ हिन्दी आवाज़ नहीं मिली — अंग्रेज़ी में सुनाया जाएगा';
+          playerBadge.textContent = '🎙️ English Audio Voice';
+        }
+      } else {
+        statusSpan.textContent = `✓ Active Voice: ${voice.name}`;
+        noteSpan.textContent = '';
+        playerBadge.textContent = '🎙️ English Voice';
+      }
+    }
+
+    /* Test Speaker Button: 100% Reliable immediate sound check */
+    function testSpeakerVoice() {
+      if (!speechSynth) {
+        alert("Speech synthesis is not supported on this browser.");
+        return;
+      }
+
+      speechSynth.cancel();
+      const voice = getActiveVoice();
+      let phrase = "Hello! Audio narration is working perfectly.";
+
+      if (voice) {
+        const isPa = voice.lang.startsWith('pa') || voice.name.toLowerCase().includes('punjabi');
+        const isHi = voice.lang.startsWith('hi') || voice.name.toLowerCase().includes('hindi');
+        if (isPa) phrase = "ਸਤਿ ਸ਼੍ਰੀ ਅਕਾਲ! ਆਡੀਓ ਬਿਲਕੁਲ ਸਹੀ ਚੱਲ ਰਹੀ ਹੈ।";
+        else if (isHi) phrase = "नमस्ते! ऑडियो बिल्कुल सही काम कर रहा है।";
+      }
+
+      const testUtterance = new SpeechSynthesisUtterance(phrase);
+      if (voice) {
+        testUtterance.voice = voice;
+        testUtterance.lang = voice.lang;
+      }
+      testUtterance.rate = audioPlaybackRate;
+
+      testUtterance.onstart = () => {
+        alert(`🔊 Playing sound test!\nVoice: ${voice ? voice.name : 'Default'}\nLanguage: ${voice ? voice.lang : 'System'}`);
+      };
+
+      testUtterance.onerror = (err) => {
+        alert(`Speech error: ${err.error}. Trying default voice.`);
+        const retry = new SpeechSynthesisUtterance("Audio test successful.");
+        speechSynth.speak(retry);
+      };
+
+      window._testUtt = testUtterance; // Prevent GC
+      speechSynth.speak(testUtterance);
+    }
+
+    /* ==========================================================================
+       SMART SCRIPT-TO-VOICE RUNTIME SPEECH
+       ========================================================================== */
+    function startAudioForBook(bookId) {
+      const book = BOOKS.find(b => b.id === bookId);
+      if (!book) return;
+      currentBook = book;
+      showAudioPlayer();
+      playCurrentBlinkAudio();
+    }
+
+    function showAudioPlayer() {
+      document.getElementById('audio-player-bar').classList.remove('hidden');
+    }
+
+    function closeAudioPlayer() {
+      stopSpeech();
+      document.getElementById('audio-player-bar').classList.add('hidden');
+    }
+
+    function playCurrentBlinkAudio() {
+      if (!speechSynth) return;
+      speechSynth.cancel();
+
+      if (!currentBook) currentBook = BOOKS[0];
+      const blink = currentBook.blinks[currentBlinkIndex];
+      if (!blink) return;
+
+      const voice = getActiveVoice();
+      const isVoicePa = voice && (voice.lang.startsWith('pa') || voice.name.toLowerCase().includes('punjabi'));
+      const isVoiceHi = voice && (voice.lang.startsWith('hi') || voice.name.toLowerCase().includes('hindi'));
+
+      let textToRead = "";
+
+      // SMART CONTENT SELECTION: Prevent feeding Gurmukhi to English voice (which causes silent crash)
+      if (currentLanguage === 'pa') {
+        if (isVoicePa && blink.contentPa) {
+          textToRead = `${blink.titlePa || blink.title}। ਮੁੱਖ ਸਾਰ: ${blink.takeawayPa || blink.takeaway}। ${blink.contentPa}`;
+        } else if (isVoiceHi && blink.contentHi) {
+          // If machine has Hindi voice but no Punjabi, speak Hindi text (fluent sound)
+          textToRead = `${blink.titleHi || blink.title}। मुख्य सार: ${blink.takeawayHi || blink.takeaway}। ${blink.contentHi}`;
+        } else {
+          // English voice fallback (will speak loudly and clearly on ANY PC/Mac without crashing)
+          textToRead = `${blink.title}. Key takeaway: ${blink.takeaway}. ${blink.content}`;
+        }
+      } else if (currentLanguage === 'hi') {
+        if (isVoiceHi && blink.contentHi) {
+          textToRead = `${blink.titleHi || blink.title}। मुख्य सार: ${blink.takeawayHi || blink.takeaway}। ${blink.contentHi}`;
+        } else {
+          textToRead = `${blink.title}. Key takeaway: ${blink.takeaway}. ${blink.content}`;
+        }
+      } else {
+        textToRead = `${blink.title}. Key takeaway: ${blink.takeaway}. ${blink.content}`;
+      }
+
+      currentSentences = splitSentences(textToRead);
+      activeSentenceIndex = 0;
+
+      showAudioPlayer();
+      updateAudioPlayerUI();
+      speakNextSentence();
+    }
+
+    function splitSentences(text) {
+      const matches = text.match(/[^।\.!\?]+[।\.!\?]?/g);
+      return matches ? matches.map(s => s.trim()).filter(s => s.length > 0) : [text];
+    }
+
+    function speakNextSentence() {
+      if (!speechSynth) return;
+
+      if (activeSentenceIndex >= currentSentences.length) {
+        isAudioPlaying = false;
+        updateAudioPlayerUI();
+
+        if (currentBlinkIndex < currentBook.blinks.length - 1) {
+          setTimeout(() => {
+            navigateBlink(1);
+            playCurrentBlinkAudio();
+          }, 600);
+        }
+        return;
+      }
+
+      const sentence = currentSentences[activeSentenceIndex];
+      const utterance = new SpeechSynthesisUtterance(sentence);
+      const voice = getActiveVoice();
+
+      if (voice) {
+        utterance.voice = voice;
+        utterance.lang = voice.lang;
+      }
+
+      utterance.rate = audioPlaybackRate;
+
+      utterance.onstart = () => {
+        isAudioPlaying = true;
+        highlightActiveSentence(activeSentenceIndex);
+        updateAudioPlayerUI();
+      };
+
+      utterance.onend = () => {
+        activeSentenceIndex++;
+        const pct = (activeSentenceIndex / currentSentences.length) * 100;
+        document.getElementById('player-scrubber-fill').style.width = `${pct}%`;
+        speakNextSentence();
+      };
+
+      utterance.onerror = (e) => {
+        console.warn('Sentence speech error, auto-advancing:', e);
+        activeSentenceIndex++;
+        speakNextSentence();
+      };
+
+      // GARBAGE COLLECTION FIX: Pin utterance globally
+      window._activeUtt = utterance;
+
+      speechSynth.speak(utterance);
+    }
+
+    function toggleAudioPlay() {
+      if (isAudioPlaying) {
+        speechSynth.cancel();
+        isAudioPlaying = false;
+        updateAudioPlayerUI();
+      } else {
+        if (currentSentences.length > 0 && activeSentenceIndex < currentSentences.length) {
+          speakNextSentence();
+        } else {
+          playCurrentBlinkAudio();
+        }
+      }
+    }
+
+    function stopSpeech() {
+      if (speechSynth) speechSynth.cancel();
+      isAudioPlaying = false;
+      unhighlightSentences();
+      updateAudioPlayerUI();
+    }
+
+    function updateAudioPlayerUI() {
+      if (!currentBook) return;
+      const blink = currentBook.blinks[currentBlinkIndex];
+      const isPa = currentLanguage === 'pa';
+      const isHi = currentLanguage === 'hi';
+
+      const bookTitle = isPa ? (currentBook.titlePa || currentBook.title) : (isHi ? (currentBook.titleHi || currentBook.title) : currentBook.title);
+      const blinkTitle = isPa ? (blink.titlePa || blink.title) : (isHi ? (blink.titleHi || blink.title) : blink.title);
+
+      document.getElementById('player-thumb').style.background = currentBook.color || '#059669';
+      document.getElementById('player-title').textContent = bookTitle;
+      document.getElementById('player-subtitle').textContent = `Blink ${currentBlinkIndex + 1}: ${blinkTitle}`;
+      document.getElementById('player-play-btn').textContent = isAudioPlaying ? '⏸' : '▶';
+    }
+
+    function cycleAudioSpeed() {
+      const speeds = [0.75, 1.0, 1.25];
+      const idx = (speeds.indexOf(audioPlaybackRate) + 1) % speeds.length;
+      audioPlaybackRate = speeds[idx];
+      const label = audioPlaybackRate === 0.75 ? '🐢 0.75x' : (audioPlaybackRate === 1.0 ? '⚡ 1.0x' : '🚀 1.25x');
+      document.getElementById('speed-btn').textContent = label;
+      if (isAudioPlaying) {
+        speechSynth.cancel();
+        speakNextSentence();
+      }
+    }
+
+    function cycleSleepTimer() {
+      const timerBtn = document.getElementById('sleep-timer-btn');
+      clearTimeout(sleepTimerTimeout);
+
+      if (sleepTimerMinutes === 0) {
+        sleepTimerMinutes = 15;
+        timerBtn.textContent = '⏰ 15 min';
+        timerBtn.classList.add('active');
+        sleepTimerTimeout = setTimeout(triggerSleepTimerStop, 15 * 60 * 1000);
+      } else if (sleepTimerMinutes === 15) {
+        sleepTimerMinutes = 30;
+        timerBtn.textContent = '⏰ 30 min';
+        timerBtn.classList.add('active');
+        sleepTimerTimeout = setTimeout(triggerSleepTimerStop, 30 * 60 * 1000);
+      } else if (sleepTimerMinutes === 30) {
+        sleepTimerMinutes = 45;
+        timerBtn.textContent = '⏰ 45 min';
+        timerBtn.classList.add('active');
+        sleepTimerTimeout = setTimeout(triggerSleepTimerStop, 45 * 60 * 1000);
+      } else {
+        sleepTimerMinutes = 0;
+        timerBtn.textContent = '⏰ Off';
+        timerBtn.classList.remove('active');
+      }
+    }
+
+    function triggerSleepTimerStop() {
+      stopSpeech();
+      sleepTimerMinutes = 0;
+      document.getElementById('sleep-timer-btn').textContent = '⏰ Off';
+      document.getElementById('sleep-timer-btn').classList.remove('active');
+      alert("Sleep Timer finished. Audio stopped.");
+    }
+
+    function navigateBlinkAudio(dir) {
+      if (!currentBook) return;
+      const next = currentBlinkIndex + dir;
+      if (next >= 0 && next < currentBook.blinks.length) {
+        currentBlinkIndex = next;
+        if (document.getElementById('reader-view').classList.contains('active')) {
+          renderReaderBlink();
+        }
+        playCurrentBlinkAudio();
+      }
+    }
+
+    function scrubAudio(e) {
+      if (currentSentences.length === 0) return;
+      const rect = e.currentTarget.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const pct = Math.max(0, Math.min(1, clickX / rect.width));
+      activeSentenceIndex = Math.floor(pct * currentSentences.length);
+      speechSynth.cancel();
+      speakNextSentence();
+    }
+
+    function highlightActiveSentence(idx) {
+      const container = document.getElementById('blink-body-content');
+      const spans = container.querySelectorAll('.blink-sentence');
+      spans.forEach((span, i) => {
+        if (i === idx) {
+          span.classList.add('reading-active');
+          span.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          span.classList.remove('reading-active');
+        }
+      });
+    }
+
+    function unhighlightSentences() {
+      document.querySelectorAll('.blink-sentence').forEach(s => s.classList.remove('reading-active'));
+    }
+
+    /* ==========================================================================
+       READER & ELDER MODE
+       ========================================================================== */
+    function openReader(bookId, blinkIdx = 0) {
+      const book = BOOKS.find(b => b.id === bookId);
+      if (!book) return;
+      currentBook = book;
+      currentBlinkIndex = blinkIdx;
+
+      document.getElementById('reader-view').classList.add('active');
+      document.body.style.overflow = 'hidden';
+      renderReaderBlink();
+    }
+
+    function closeReader() {
+      document.getElementById('reader-view').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    function renderReaderBlink() {
+      if (!currentBook) return;
+      const blink = currentBook.blinks[currentBlinkIndex];
+      const total = currentBook.blinks.length;
+      const isPa = currentLanguage === 'pa';
+      const isHi = currentLanguage === 'hi';
+
+      const title = isPa ? (currentBook.titlePa || currentBook.title) : (isHi ? (currentBook.titleHi || currentBook.title) : currentBook.title);
+      document.getElementById('reader-book-title').textContent = title;
+      document.getElementById('reader-blink-status').textContent = `Blink ${currentBlinkIndex + 1} of ${total}`;
+
+      const pct = Math.round(((currentBlinkIndex + 1) / total) * 100);
+      document.getElementById('reader-progress-line').style.width = `${pct}%`;
+
+      document.getElementById('blink-eyebrow').textContent = `BLINK ${currentBlinkIndex + 1} OF ${total}`;
+      document.getElementById('blink-heading').textContent = isPa ? (blink.titlePa || blink.title) : (isHi ? (blink.titleHi || blink.title) : blink.title);
+
+      const takeaway = isPa ? (blink.takeawayPa || blink.takeaway) : (isHi ? (blink.takeawayHi || blink.takeaway) : blink.takeaway);
+      document.getElementById('blink-takeaway-text').textContent = takeaway;
+
+      const bodyContent = isPa ? (blink.contentPa || blink.content) : (isHi ? (blink.contentHi || blink.content) : blink.content);
+      const sentences = splitSentences(bodyContent);
+      document.getElementById('blink-body-content').innerHTML = sentences.map((s, i) => `<span class="blink-sentence" data-idx="${i}">${escapeHTML(s)} </span>`).join('');
+
+      document.getElementById('btn-prev-blink').style.visibility = currentBlinkIndex === 0 ? 'hidden' : 'visible';
+      document.getElementById('btn-next-blink').textContent = currentBlinkIndex === total - 1 ? 'Finish 🎉' : 'Next →';
+    }
+
+    function navigateBlink(dir) {
+      if (!currentBook) return;
+      const next = currentBlinkIndex + dir;
+      if (next >= 0 && next < currentBook.blinks.length) {
+        currentBlinkIndex = next;
+        renderReaderBlink();
+        document.getElementById('reader-view').scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function toggleElderMode() {
+      isElderMode = !isElderMode;
+      applyElderMode(isElderMode);
+    }
+
+    function applyElderMode(enabled) {
+      const btn = document.getElementById('btn-elder-toggle');
+      if (enabled) {
+        document.body.classList.add('elder-mode');
+        btn.classList.add('btn-primary');
+        btn.classList.remove('btn-outline');
+      } else {
+        document.body.classList.remove('elder-mode');
+        btn.classList.remove('btn-primary');
+        btn.classList.add('btn-outline');
+      }
+      localStorage.setItem('qb_elder_mode', enabled.toString());
+    }
+
+    /* ==========================================================================
+       BOOK LIST RENDERING
+       ========================================================================== */
+    function renderBooks(list = BOOKS) {
+      const grid = document.getElementById('book-grid');
+      const isPa = currentLanguage === 'pa';
+      const isHi = currentLanguage === 'hi';
+
+      grid.innerHTML = list.map(b => {
+        const title = isPa ? (b.titlePa || b.title) : (isHi ? (b.titleHi || b.title) : b.title);
+        const author = isPa ? (b.authorPa || b.author) : (isHi ? (b.authorHi || b.author) : b.author);
+        const desc = isPa ? (b.descriptionPa || b.description) : (isHi ? (b.descriptionHi || b.description) : b.description);
+        const isSaved = savedBooks.includes(b.id);
+
+        return `
+          <div class="book-card" onclick="openReader('${b.id}', 0)">
+            <div class="book-cover-wrap" style="background:${b.bgGradient || b.color};">
+              <div>
+                <div class="book-cover-title">${escapeHTML(title)}</div>
+                <div class="book-cover-author">${escapeHTML(author)}</div>
+              </div>
+            </div>
+
+            <div class="book-meta">
+              <span class="meta-tag meta-tag-category">${escapeHTML(b.category)}</span>
+              <span class="meta-tag meta-tag-lang">🎙️ ਪੰਜਾਬੀ · हिन्दी · EN</span>
+            </div>
+
+            <h3 class="book-title">${escapeHTML(b.title)}</h3>
+            ${isPa || isHi ? `<div class="book-title-native">${escapeHTML(title)}</div>` : ''}
+            <div class="book-author">${escapeHTML(author)}</div>
+            <p class="book-snippet">${escapeHTML(desc)}</p>
+
+            <div class="book-card-footer" onclick="event.stopPropagation()">
+              <div class="card-actions-left">
+                <button class="btn btn-card-listen" onclick="startAudioForBook('${b.id}')">
+                  ▶️ ਸੁਣੋ (Listen)
+                </button>
+                <button class="btn btn-outline" onclick="openReader('${b.id}', 0)">
+                  📖 Read
+                </button>
+              </div>
+              <button class="btn btn-ghost" onclick="toggleSave('${b.id}')" title="Save Book" style="font-size:1.25rem;">
+                ${isSaved ? '★' : '☆'}
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function toggleSave(bookId) {
+      if (savedBooks.includes(bookId)) {
+        savedBooks = savedBooks.filter(id => id !== bookId);
+      } else {
+        savedBooks.push(bookId);
+      }
+      localStorage.setItem('qb_saved_books', JSON.stringify(savedBooks));
+      renderBooks();
+      renderLibrary();
+    }
+
+    function renderLibrary() {
+      const grid = document.getElementById('library-book-grid');
+      const filtered = BOOKS.filter(b => savedBooks.includes(b.id));
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:3rem; color:var(--text-muted);">ਤੁਸੀਂ ਅਜੇ ਕੋਈ ਕਿਤਾਬ ਸੇਵ ਨਹੀਂ ਕੀਤੀ। ਕਿਤਾਬ 'ਤੇ ਦਿੱਤੇ ☆ ਸਟਾਰ 'ਤੇ ਕਲਿੱਕ ਕਰਕੇ ਇੱਥੇ ਜੋੜੋ!</div>`;
+        return;
+      }
+      renderBooks(filtered);
+    }
+
+    function switchNav(tab) {
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(`tab-btn-${tab}`).classList.add('active');
+
+      if (tab === 'discover') {
+        document.getElementById('view-discover').style.display = 'block';
+        document.getElementById('view-library').style.display = 'none';
+      } else {
+        document.getElementById('view-discover').style.display = 'none';
+        document.getElementById('view-library').style.display = 'block';
+        renderLibrary();
+      }
+    }
+
+    function setCategory(cat) {
+      selectedCategory = cat;
+      document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
+      event.target.classList.add('active');
+      filterBooks();
+    }
+
+    function filterBooks() {
+      const q = document.getElementById('search-input').value.toLowerCase().trim();
+      let list = BOOKS;
+      if (selectedCategory !== 'All') {
+        list = list.filter(b => b.category === selectedCategory);
+      }
+      if (q) {
+        list = list.filter(b => 
+          b.title.toLowerCase().includes(q) || 
+          (b.titlePa && b.titlePa.toLowerCase().includes(q)) || 
+          (b.titleHi && b.titleHi.toLowerCase().includes(q)) || 
+          b.author.toLowerCase().includes(q)
+        );
+      }
+      renderBooks(list);
+    }
+
+    function cycleTheme() {
+      const themes = ['light', 'sepia', 'dark'];
+      const next = themes[(themes.indexOf(currentTheme) + 1) % themes.length];
+      applyTheme(next);
+    }
+
+    function applyTheme(theme) {
+      currentTheme = theme;
+      document.body.className = `theme-${theme}${isElderMode ? ' elder-mode' : ''}`;
+      localStorage.setItem('qb_theme', theme);
+    }
+
+    function openHomeAppModal() {
+      document.getElementById('modal-home-app').classList.add('active');
+    }
+
+    function closeHomeAppModal() {
+      document.getElementById('modal-home-app').classList.remove('active');
+    }
+
+    function escapeHTML(str) {
+      if (!str) return '';
+      return str.replace(/[&<>'"]/g, tag => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        "'": '&#39;',
+        '"': '&quot;'
+      }[tag] || tag));
+    }
+
+    window.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
