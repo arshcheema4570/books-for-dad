@@ -1,4 +1,4 @@
-const CACHE_NAME = 'quickblink-v1';
+const CACHE_NAME = 'quickblink-v2';
 const APP_SHELL = [
   './',
   './index.html',
@@ -29,6 +29,7 @@ self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
   const requestUrl = new URL(event.request.url);
   if (requestUrl.origin !== self.location.origin) return;
+  if (!requestUrl.pathname.startsWith(new URL(self.registration.scope).pathname)) return;
 
   if (event.request.mode === 'navigate') {
     event.respondWith(
