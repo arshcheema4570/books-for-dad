@@ -1,4 +1,4 @@
-const CACHE_NAME = 'quickblink-v4';
+const CACHE_NAME = 'quickblink-v5';
 // Kokoro Hindi voice files (~137 MB: model, voices, ORT + eSpeak-NG wasm)
 // are NOT precached here. They download on first Hindi TTS use and are then
 // cached by the runtime fetch handler below (same-origin GETs) plus
