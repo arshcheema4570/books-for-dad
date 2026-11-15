@@ -1313,7 +1313,7 @@ section:nth-of-type(4),.card:nth-child(4),[class*="-card"]:nth-child(4){animatio
       // --- Offline / local-first env. Set BEFORE from_pretrained(). ---
       env.allowLocalModels = true;    // browser default is false
       env.allowRemoteModels = false;  // a missing local file throws instead of fetching from HF
-      env.wasmPaths = "./vendor/ort/"; // trailing slash; ORT fetches ort-wasm-simd-threaded.jsep.wasm from here
+      env.wasmPaths = new URL("./vendor/ort/", document.baseURI).href; // absolute: a relative string resolves against the bundle folder (vendor/kokoro/) in dynamic imports, 404ing the jsep .mjs
       setVoiceDataUrl("./models/Kokoro-82M-v1.0-ONNX/voices"); // no trailing slash
 
       setLoading(true, "Loading Hindi voice (first use downloads ~137 MB)…");
