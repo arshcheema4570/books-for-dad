@@ -9,6 +9,7 @@ A personal and family learning app with concise book summaries (“blinks”), p
 - Punjabi, Hindi, and English reading modes.
 - Searchable book library with category filters, saved summaries, and a focused reader with blink-by-blink navigation.
 - Browser text-to-speech with language-aware voice selection, playback controls, speed cycling, and a sleep timer.
+- Hindi audio uses the offline **Kokoro-82M** neural voice (vendored in the repo; four Hindi voices — Alpha, Beta, Omega, Psi — default Alpha). First Hindi playback downloads ~137 MB once, then works offline; Punjabi and English still use the device's built-in voices, and Hindi falls back to the device voice if the offline voice can't load.
 - Dark, sepia, and elder-friendly reading modes.
 - Installable PWA with an offline app shell. Saved books, preferences, and reading state are kept in browser storage on the device.
 

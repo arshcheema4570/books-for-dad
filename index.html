@@ -1288,6 +1288,120 @@ section:nth-of-type(4),.card:nth-child(4),[class*="-card"]:nth-child(4){animatio
     </div>
   </div>
 
+  <!-- Kokoro-82M Hindi voice (offline, vendored) — importmap + bridge.
+       The module below defines window.__kokoroSpeak / window.__kokoroStop,
+       which the classic speech engine below calls for Hindi. If the module
+       fails to load, those globals stay undefined and the app falls back to
+       the device's native speechSynthesis voices. -->
+  <script type="importmap">
+  {
+    "imports": {
+      "espeak-ng": "./vendor/espeak-ng/espeak-ng.js"
+    }
+  }
+  </script>
+  <script type="module">
+    import { KokoroTTS, env, setVoiceDataUrl } from "./vendor/kokoro/kokoro-hindi.web.js";
+
+    // Kokoro Hindi voices: hf_alpha + hf_beta female, hm_omega + hm_psi male.
+    const HINDI_VOICES = ["hf_alpha", "hf_beta", "hm_omega", "hm_psi"];
+
+    let tts = null;            // cached instance; never reload
+    let audioCtx = null;       // created lazily on a user gesture
+    let currentSource = null;  // currently playing buffer source (if any)
+    let runId = 0;             // bumped by __kokoroStop; stale runs resolve as "stopped"
+    let queue = Promise.resolve(); // one generate() at a time, in order
+
+    function setLoading(on, label) {
+      try {
+        if (typeof window.__kokoroLoading === "function") window.__kokoroLoading(on, label || "");
+      } catch (e) { /* loading UI is best-effort; never break speech */ }
+    }
+
+    // Load once, lazily — first Hindi TTS use only. Throws on failure;
+    // the caller falls back to native speechSynthesis.
+    async function loadTTS(onProgress) {
+      if (tts) return tts;
+
+      // --- Offline / local-first env. Set BEFORE from_pretrained(). ---
+      env.allowLocalModels = true;    // browser default is false
+      env.allowRemoteModels = false;  // a missing local file throws instead of fetching from HF
+      env.wasmPaths = "./vendor/ort/"; // trailing slash; ORT fetches ort-wasm-simd-threaded.jsep.wasm from here
+      setVoiceDataUrl("./models/Kokoro-82M-v1.0-ONNX/voices"); // no trailing slash
+
+      setLoading(true, "Loading Hindi voice (first use downloads ~137 MB)…");
+      try {
+        tts = await KokoroTTS.from_pretrained("./models/Kokoro-82M-v1.0-ONNX", {
+          dtype: "q8",
+          device: "wasm", // FORCE wasm. Never "webgpu" for q8 (garbled audio).
+          progress_callback: (p) => {
+            onProgress?.(p);
+            if (p && p.file) setLoading(true, "Loading Hindi voice: " + p.file + "…");
+          },
+        });
+      } finally {
+        setLoading(false);
+      }
+      return tts;
+    }
+
+    // One sentence per generate() call, ≤100–200 tokens. Hindi only.
+    async function speakSentence(text, voice = "hf_alpha") {
+      const t = await loadTTS();
+      setLoading(true, "Generating Hindi voice…");
+      try {
+        const { audio, sampling_rate } = await t.generate(text, { voice });
+        return { audio, sampling_rate }; // Float32Array at 24000 Hz
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    function playAudio({ audio, sampling_rate }) {
+      if (!audioCtx) audioCtx = new AudioContext(); // created on a user gesture
+      if (audioCtx.state === "suspended") void audioCtx.resume();
+      const buf = audioCtx.createBuffer(1, audio.length, sampling_rate);
+      buf.copyToChannel(audio, 0);
+      const src = audioCtx.createBufferSource();
+      src.buffer = buf;
+      src.connect(audioCtx.destination);
+      currentSource = src;
+      return new Promise((resolve) => {
+        src.onended = () => { if (currentSource === src) currentSource = null; resolve(); };
+        src.start();
+      });
+    }
+
+    window.__kokoroVoices = HINDI_VOICES.slice();
+
+    // Speak one sentence with a Kokoro Hindi voice. Resolves "done" when
+    // playback ends, "stopped" if __kokoroStop() ran, rejects on load/generate
+    // failure (caller falls back to native speech). Sequential via queue.
+    window.__kokoroSpeak = function (text, voice) {
+      const myRun = runId;
+      queue = queue.then(async () => {
+        if (myRun !== runId) return "stopped";
+        const { audio, sampling_rate } = await speakSentence(text, voice || "hf_alpha");
+        if (myRun !== runId) return "stopped"; // stopped mid-generate: don't play
+        await playAudio({ audio, sampling_rate });
+        return myRun !== runId ? "stopped" : "done";
+      }).catch((err) => {
+        // A failed sentence must not poison the queue for later sentences.
+        if (myRun === runId) throw err;
+        return "stopped";
+      });
+      return queue;
+    };
+
+    // Stop in-flight Kokoro playback/generation. Generation already running
+    // finishes in the background but its audio is never played.
+    window.__kokoroStop = function () {
+      runId++;
+      try { if (currentSource) currentSource.stop(); } catch (e) {}
+      currentSource = null;
+    };
+  </script>
+
   <script>
     /* ==========================================================================
        CURATED 10-BOOK TRILINGUAL DATASET (English · ਪੰਜਾਬੀ · हिन्दी)
@@ -1630,6 +1744,61 @@ section:nth-of-type(4),.card:nth-child(4),[class*="-card"]:nth-child(4){animatio
     let sleepTimerTimeout = null;
     let sleepTimerMinutes = 0;
 
+    /* Kokoro-82M Hindi voice (offline, vendored) — the module script above
+       the dataset defines window.__kokoroSpeak / window.__kokoroStop.
+       Hindi only: Kokoro has NO Punjabi, so Punjabi stays on the device
+       voice exactly as before and is never routed through Kokoro. */
+    const KOKORO_HINDI_VOICES = [
+      { id: 'hf_alpha', label: 'Alpha', gender: 'Female' },
+      { id: 'hf_beta', label: 'Beta', gender: 'Female' },
+      { id: 'hm_omega', label: 'Omega', gender: 'Male' },
+      { id: 'hm_psi', label: 'Psi', gender: 'Male' },
+    ];
+    let selectedKokoroVoice = null; // 'hf_alpha' etc., or null = not explicitly picked
+    let currentKokoroVoice = 'hf_alpha';
+    let currentReadUsesKokoro = false; // true while the current blink is read by Kokoro
+    let kokoroRunToken = 0; // bumped to cancel an in-flight Kokoro sentence
+    let kokoroLoading = false;
+
+    // Kokoro Hindi voice for the current language, or null. Hindi defaults
+    // to Kokoro hf_alpha; an explicitly picked native voice wins.
+    function kokoroVoiceForCurrentLang() {
+      if (currentLanguage !== 'hi') return null;
+      if (selectedKokoroVoice) return selectedKokoroVoice;
+      if (userSelectedVoice) return null; // user explicitly picked a native voice
+      return 'hf_alpha';
+    }
+
+    // Cancel whatever is speaking now — native utterance and/or Kokoro
+    // generation/playback. Use instead of speechSynth.cancel() anywhere the
+    // current sentence may be a Kokoro one.
+    function cancelCurrentSpeech() {
+      if (speechSynth) speechSynth.cancel();
+      kokoroRunToken++;
+      if (typeof window.__kokoroStop === 'function') {
+        try { window.__kokoroStop(); } catch (e) {}
+      }
+    }
+
+    // Spinner state in the existing player UI while Kokoro loads/generates
+    // (CPU/WASM takes ~7–14 s per short sentence). Never blocks the UI thread.
+    function setKokoroLoadingUI(on, label) {
+      kokoroLoading = on;
+      const btn = document.getElementById('player-play-btn');
+      if (btn) btn.textContent = on ? '⏳' : (isAudioPlaying ? '⏸' : '▶');
+    }
+
+    // Called by the Kokoro module while the model loads / a sentence generates.
+    window.__kokoroLoading = function (on, label) {
+      setKokoroLoadingUI(on, label);
+      const statusSpan = document.getElementById('diag-voice-status');
+      if (on && label && statusSpan) {
+        statusSpan.textContent = '⏳ ' + label;
+      } else if (!on) {
+        updateDiagnosticBanner();
+      }
+    };
+
     // Mobile Audio Unlock Flag
     let audioUnlocked = false;
 
@@ -1723,6 +1892,14 @@ section:nth-of-type(4),.card:nth-child(4),[class*="-card"]:nth-child(4){animatio
       const select = document.getElementById('header-voice-select');
       select.innerHTML = '<option value="">Auto Detect Best Voice</option>';
 
+      // Kokoro offline Hindi voices first (Hindi only — no Punjabi voice exists).
+      KOKORO_HINDI_VOICES.forEach(v => {
+        const opt = document.createElement('option');
+        opt.value = 'kokoro:' + v.id;
+        opt.textContent = `🇮🇳 [हिन्दी · Kokoro] ${v.label} — ${v.gender} (offline AI voice)`;
+        select.appendChild(opt);
+      });
+
       voices.forEach((v, i) => {
         const isPa = v.lang.startsWith('pa') || v.name.toLowerCase().includes('punjabi') || v.name.toLowerCase().includes('gurmukhi');
         const isHi = v.lang.startsWith('hi') || v.name.toLowerCase().includes('hindi');
@@ -1731,13 +1908,26 @@ section:nth-of-type(4),.card:nth-child(4),[class*="-card"]:nth-child(4){animatio
         opt.textContent = `${isPa ? '🇮🇳 [ਪੰਜਾਬੀ] ' : (isHi ? '🇮🇳 [हिन्दी] ' : '')}${v.name} (${v.lang})`;
         select.appendChild(opt);
       });
+
+      // Restore the current selection (repopulation also runs on voiceschanged).
+      if (selectedKokoroVoice) {
+        select.value = 'kokoro:' + selectedKokoroVoice;
+      } else if (userSelectedVoice) {
+        const idx = detectedVoices.indexOf(userSelectedVoice);
+        if (idx >= 0) select.value = String(idx);
+      }
     }
 
     function onUserSelectVoice(val) {
       if (val === "") {
         userSelectedVoice = null;
+        selectedKokoroVoice = null;
+      } else if (val.indexOf('kokoro:') === 0) {
+        selectedKokoroVoice = val.slice('kokoro:'.length);
+        userSelectedVoice = null;
       } else {
         userSelectedVoice = detectedVoices[parseInt(val)];
+        selectedKokoroVoice = null;
       }
       updateDiagnosticBanner();
       if (isAudioPlaying) {
@@ -1780,6 +1970,16 @@ section:nth-of-type(4),.card:nth-child(4),[class*="-card"]:nth-child(4){animatio
       const noteSpan = document.getElementById('diag-fallback-note');
       const playerBadge = document.getElementById('player-voice-badge');
 
+      // Kokoro Hindi voice active (Hindi mode, Kokoro picked or defaulted).
+      const kokoroVoice = kokoroVoiceForCurrentLang();
+      if (kokoroVoice) {
+        const meta = KOKORO_HINDI_VOICES.find(v => v.id === kokoroVoice) || { label: kokoroVoice };
+        statusSpan.textContent = `✓ Active Voice: Kokoro ${meta.label} (Hindi · offline AI voice)`;
+        noteSpan.textContent = '';
+        playerBadge.textContent = '🎙️ हिन्दी Voice (Kokoro)';
+        return;
+      }
+
       if (!voice) {
         statusSpan.textContent = 'Voice engine ready (Waiting for sound activation)';
         noteSpan.textContent = '';
@@ -1792,7 +1992,7 @@ section:nth-of-type(4),.card:nth-child(4),[class*="-card"]:nth-child(4){animatio
       if (currentLanguage === 'pa') {
         if (isPa) {
           statusSpan.textContent = `✓ Active Voice: ${voice.name} (Authentic Punjabi)`;
-          noteSpan.textContent = '';
+          noteSpan.textContent = 'ℹ️ Punjabi uses the device voice — the Kokoro voice is Hindi-only';
           playerBadge.textContent = '🎙️ ਪੰਜਾਬੀ Voice';
         } else if (isHi) {
           statusSpan.textContent = `✓ Active Voice: ${voice.name} (Hindi/Indian Voice)`;
@@ -1822,12 +2022,28 @@ section:nth-of-type(4),.card:nth-child(4),[class*="-card"]:nth-child(4){animatio
 
     /* Test Speaker Button: 100% Reliable immediate sound check */
     function testSpeakerVoice() {
+      // Kokoro Hindi test (Hindi mode, Kokoro voice active): offline AI voice.
+      const kokoroVoice = kokoroVoiceForCurrentLang();
+      if (kokoroVoice && typeof window.__kokoroSpeak === 'function') {
+        cancelCurrentSpeech();
+        const meta = KOKORO_HINDI_VOICES.find(v => v.id === kokoroVoice) || { label: kokoroVoice };
+        alert(`🔊 Playing sound test!\nVoice: Kokoro ${meta.label} (Hindi · offline AI voice)\nLanguage: hi`);
+        window.__kokoroSpeak("नमस्ते! ऑडियो बिल्कुल सही काम कर रहा है।", kokoroVoice).catch((err) => {
+          console.warn('Kokoro test failed, falling back to native voice:', err);
+          nativeSpeakerTest();
+        });
+        return;
+      }
+      nativeSpeakerTest();
+    }
+
+    function nativeSpeakerTest() {
       if (!speechSynth) {
         alert("Speech synthesis is not supported on this browser.");
         return;
       }
 
-      speechSynth.cancel();
+      cancelCurrentSpeech();
       const voice = getActiveVoice();
       let phrase = "Hello! Audio narration is working perfectly.";
 
@@ -1880,8 +2096,8 @@ section:nth-of-type(4),.card:nth-child(4),[class*="-card"]:nth-child(4){animatio
     }
 
     function playCurrentBlinkAudio() {
-      if (!speechSynth) return;
-      speechSynth.cancel();
+      if (!speechSynth && typeof window.__kokoroSpeak !== 'function') return;
+      cancelCurrentSpeech();
 
       if (!currentBook) currentBook = BOOKS[0];
       const blink = currentBook.blinks[currentBlinkIndex];
@@ -1890,6 +2106,13 @@ section:nth-of-type(4),.card:nth-child(4),[class*="-card"]:nth-child(4){animatio
       const voice = getActiveVoice();
       const isVoicePa = voice && (voice.lang.startsWith('pa') || voice.name.toLowerCase().includes('punjabi'));
       const isVoiceHi = voice && (voice.lang.startsWith('hi') || voice.name.toLowerCase().includes('hindi'));
+
+      // Kokoro offline Hindi voice (default hf_alpha in Hindi mode, unless the
+      // user explicitly picked a native voice). Never used for Punjabi.
+      const kokoroVoice = kokoroVoiceForCurrentLang();
+      const useKokoro = !!kokoroVoice && typeof window.__kokoroSpeak === 'function';
+      currentKokoroVoice = kokoroVoice || 'hf_alpha';
+      currentReadUsesKokoro = false;
 
       let textToRead = "";
 
@@ -1905,8 +2128,9 @@ section:nth-of-type(4),.card:nth-child(4),[class*="-card"]:nth-child(4){animatio
           textToRead = `${blink.title}. Key takeaway: ${blink.takeaway}. ${blink.content}`;
         }
       } else if (currentLanguage === 'hi') {
-        if (isVoiceHi && blink.contentHi) {
+        if ((isVoiceHi || useKokoro) && blink.contentHi) {
           textToRead = `${blink.titleHi || blink.title}। मुख्य सार: ${blink.takeawayHi || blink.takeaway}। ${blink.contentHi}`;
+          currentReadUsesKokoro = useKokoro;
         } else {
           textToRead = `${blink.title}. Key takeaway: ${blink.takeaway}. ${blink.content}`;
         }
@@ -1928,7 +2152,7 @@ section:nth-of-type(4),.card:nth-child(4),[class*="-card"]:nth-child(4){animatio
     }
 
     function speakNextSentence() {
-      if (!speechSynth) return;
+      if (!speechSynth && !currentReadUsesKokoro) return;
 
       if (activeSentenceIndex >= currentSentences.length) {
         isAudioPlaying = false;
@@ -1940,6 +2164,12 @@ section:nth-of-type(4),.card:nth-child(4),[class*="-card"]:nth-child(4){animatio
             playCurrentBlinkAudio();
           }, 600);
         }
+        return;
+      }
+
+      // Kokoro Hindi path (Hindi blink, Kokoro voice active).
+      if (currentReadUsesKokoro) {
+        speakNextSentenceKokoro();
         return;
       }
 
@@ -1979,9 +2209,34 @@ section:nth-of-type(4),.card:nth-child(4),[class*="-card"]:nth-child(4){animatio
       speechSynth.speak(utterance);
     }
 
+    // Kokoro Hindi sentence: generate (~7–14 s on CPU, spinner shown) then
+    // play. On any failure, fall back to the native voice for the rest of
+    // this blink — never leave the user with no voice.
+    async function speakNextSentenceKokoro() {
+      const myToken = kokoroRunToken;
+      const sentence = currentSentences[activeSentenceIndex];
+      isAudioPlaying = true;
+      highlightActiveSentence(activeSentenceIndex);
+      updateAudioPlayerUI();
+      try {
+        const result = await window.__kokoroSpeak(sentence, currentKokoroVoice);
+        if (myToken !== kokoroRunToken || result === 'stopped') return; // stopped: don't advance
+        activeSentenceIndex++;
+        document.getElementById('player-scrubber-fill').style.width = `${(activeSentenceIndex / currentSentences.length) * 100}%`;
+        updateAudioPlayerUI();
+        speakNextSentence();
+      } catch (err) {
+        console.warn('Kokoro speech failed, falling back to native voice:', err);
+        if (myToken !== kokoroRunToken) return;
+        setKokoroLoadingUI(false);
+        currentReadUsesKokoro = false;
+        speakNextSentence();
+      }
+    }
+
     function toggleAudioPlay() {
       if (isAudioPlaying) {
-        speechSynth.cancel();
+        cancelCurrentSpeech();
         isAudioPlaying = false;
         updateAudioPlayerUI();
       } else {
@@ -1994,7 +2249,8 @@ section:nth-of-type(4),.card:nth-child(4),[class*="-card"]:nth-child(4){animatio
     }
 
     function stopSpeech() {
-      if (speechSynth) speechSynth.cancel();
+      cancelCurrentSpeech();
+      setKokoroLoadingUI(false);
       isAudioPlaying = false;
       unhighlightSentences();
       updateAudioPlayerUI();
@@ -2022,7 +2278,7 @@ section:nth-of-type(4),.card:nth-child(4),[class*="-card"]:nth-child(4){animatio
       const label = audioPlaybackRate === 0.75 ? '🐢 0.75x' : (audioPlaybackRate === 1.0 ? '⚡ 1.0x' : '🚀 1.25x');
       document.getElementById('speed-btn').textContent = label;
       if (isAudioPlaying) {
-        speechSynth.cancel();
+        cancelCurrentSpeech();
         speakNextSentence();
       }
     }
@@ -2079,7 +2335,7 @@ section:nth-of-type(4),.card:nth-child(4),[class*="-card"]:nth-child(4){animatio
       const clickX = e.clientX - rect.left;
       const pct = Math.max(0, Math.min(1, clickX / rect.width));
       activeSentenceIndex = Math.floor(pct * currentSentences.length);
-      speechSynth.cancel();
+      cancelCurrentSpeech();
       speakNextSentence();
     }
 
