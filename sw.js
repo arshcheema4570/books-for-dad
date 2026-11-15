@@ -1,4 +1,4 @@
-const CACHE_NAME = 'quickblink-v8';
+const CACHE_NAME = 'quickblink-v9';
 // Phonon 31M English voice (~35 MB voice model) is NOT precached here. It
 // downloads on first English TTS use from Hugging Face and is then cached
 // by the Phonon runtime in its own Cache API bucket ('phonon-tts-v1') —

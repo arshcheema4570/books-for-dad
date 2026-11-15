@@ -2552,7 +2552,9 @@ section:nth-of-type(4),.card:nth-child(4),[class*="-card"]:nth-child(4){animatio
       document.getElementById('pill-hi').className = `lang-pill ${currentLanguage === 'hi' ? 'active-hi' : ''}`;
       document.getElementById('pill-en').className = `lang-pill ${currentLanguage === 'en' ? 'active' : ''}`;
 
-      const featured = BOOKS[0];
+      const now = new Date();
+      const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 86400000);
+      const featured = BOOKS[dayOfYear % BOOKS.length];
       if (currentLanguage === 'hi') {
         document.getElementById('hero-title').textContent = featured.title;
         document.getElementById('hero-title-native').textContent = featured.titleHi;
