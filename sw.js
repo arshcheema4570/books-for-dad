@@ -1,8 +1,9 @@
-const CACHE_NAME = 'quickblink-v7';
-// Kokoro Hindi voice files (~137 MB: model, voices, ORT + eSpeak-NG wasm)
-// are NOT precached here. They download on first Hindi TTS use and are then
-// cached by the runtime fetch handler below (same-origin GETs) plus
-// Transformers.js's own Cache Storage buckets — never re-downloaded on open.
+const CACHE_NAME = 'quickblink-v8';
+// Phonon 31M English voice (~35 MB voice model) is NOT precached here. It
+// downloads on first English TTS use from Hugging Face and is then cached
+// by the Phonon runtime in its own Cache API bucket ('phonon-tts-v1') —
+// never re-downloaded on open. Cross-origin requests pass through this
+// worker untouched (see the fetch handler), so the runtime owns that cache.
 const APP_SHELL = [
   './',
   './index.html',
@@ -23,6 +24,11 @@ self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys()
       .then(keys => Promise.all(
+        // v8 drops the v7 cache, which held the removed neural-voice model
+        // and runtime files fetched same-origin. Anything the old voice
+        // runtime cached in its own Cache API buckets is inert dead
+        // storage now — no code references it — and browsers evict it
+        // under storage pressure.
         keys.filter(key => key !== CACHE_NAME && key.startsWith('quickblink-')).map(key => caches.delete(key))
       ))
       .then(() => self.clients.claim())

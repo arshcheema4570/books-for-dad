@@ -1275,119 +1275,6 @@ section:nth-of-type(4),.card:nth-child(4),[class*="-card"]:nth-child(4){animatio
     </div>
   </div>
 
-  <!-- Kokoro-82M Hindi voice (offline, vendored) — importmap + bridge.
-       The module below defines window.__kokoroSpeak / window.__kokoroStop,
-       which the classic speech engine below calls for Hindi. If the module
-       fails to load, those globals stay undefined and the app falls back to
-       the device's native speechSynthesis voices. -->
-  <script type="importmap">
-  {
-    "imports": {
-      "espeak-ng": "./vendor/espeak-ng/espeak-ng.js"
-    }
-  }
-  </script>
-  <script type="module">
-    import { KokoroTTS, env, setVoiceDataUrl } from "./vendor/kokoro/kokoro-hindi.web.js";
-
-    // Kokoro Hindi voices: hf_alpha + hf_beta female, hm_omega + hm_psi male.
-    const HINDI_VOICES = ["hf_alpha", "hf_beta", "hm_omega", "hm_psi"];
-
-    let tts = null;            // cached instance; never reload
-    let audioCtx = null;       // created lazily on a user gesture
-    let currentSource = null;  // currently playing buffer source (if any)
-    let runId = 0;             // bumped by __kokoroStop; stale runs resolve as "stopped"
-    let queue = Promise.resolve(); // one generate() at a time, in order
-
-    function setLoading(on, label) {
-      try {
-        if (typeof window.__kokoroLoading === "function") window.__kokoroLoading(on, label || "");
-      } catch (e) { /* loading UI is best-effort; never break speech */ }
-    }
-
-    // Load once, lazily — first Hindi TTS use only. Throws on failure;
-    // the caller falls back to native speechSynthesis.
-    async function loadTTS(onProgress) {
-      if (tts) return tts;
-
-      // --- Offline / local-first env. Set BEFORE from_pretrained(). ---
-      env.allowLocalModels = true;    // browser default is false
-      env.allowRemoteModels = false;  // a missing local file throws instead of fetching from HF
-      env.wasmPaths = new URL("./vendor/ort/", document.baseURI).href; // absolute: a relative string resolves against the bundle folder (vendor/kokoro/) in dynamic imports, 404ing the jsep .mjs
-      setVoiceDataUrl("./models/Kokoro-82M-v1.0-ONNX/voices"); // no trailing slash
-
-      setLoading(true, "Loading Hindi voice (first use downloads ~137 MB)…");
-      try {
-        tts = await KokoroTTS.from_pretrained("./models/Kokoro-82M-v1.0-ONNX", {
-          dtype: "q8",
-          device: "wasm", // FORCE wasm. Never "webgpu" for q8 (garbled audio).
-          progress_callback: (p) => {
-            onProgress?.(p);
-            if (p && p.file) setLoading(true, "Loading Hindi voice: " + p.file + "…");
-          },
-        });
-      } finally {
-        setLoading(false);
-      }
-      return tts;
-    }
-
-    // One sentence per generate() call, ≤100–200 tokens. Hindi only.
-    async function speakSentence(text, voice = "hf_alpha") {
-      const t = await loadTTS();
-      setLoading(true, "Generating Hindi voice…");
-      try {
-        const { audio, sampling_rate } = await t.generate(text, { voice });
-        return { audio, sampling_rate }; // Float32Array at 24000 Hz
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    function playAudio({ audio, sampling_rate }) {
-      if (!audioCtx) audioCtx = new AudioContext(); // created on a user gesture
-      if (audioCtx.state === "suspended") void audioCtx.resume();
-      const buf = audioCtx.createBuffer(1, audio.length, sampling_rate);
-      buf.copyToChannel(audio, 0);
-      const src = audioCtx.createBufferSource();
-      src.buffer = buf;
-      src.connect(audioCtx.destination);
-      currentSource = src;
-      return new Promise((resolve) => {
-        src.onended = () => { if (currentSource === src) currentSource = null; resolve(); };
-        src.start();
-      });
-    }
-
-    window.__kokoroVoices = HINDI_VOICES.slice();
-
-    // Speak one sentence with a Kokoro Hindi voice. Resolves "done" when
-    // playback ends, "stopped" if __kokoroStop() ran, rejects on load/generate
-    // failure (caller falls back to native speech). Sequential via queue.
-    window.__kokoroSpeak = function (text, voice) {
-      const myRun = runId;
-      queue = queue.then(async () => {
-        if (myRun !== runId) return "stopped";
-        const { audio, sampling_rate } = await speakSentence(text, voice || "hf_alpha");
-        if (myRun !== runId) return "stopped"; // stopped mid-generate: don't play
-        await playAudio({ audio, sampling_rate });
-        return myRun !== runId ? "stopped" : "done";
-      }).catch((err) => {
-        // A failed sentence must not poison the queue for later sentences.
-        if (myRun === runId) throw err;
-        return "stopped";
-      });
-      return queue;
-    };
-
-    // Stop in-flight Kokoro playback/generation. Generation already running
-    // finishes in the background but its audio is never played.
-    window.__kokoroStop = function () {
-      runId++;
-      try { if (currentSource) currentSource.stop(); } catch (e) {}
-      currentSource = null;
-    };
-  </script>
 
   <script>
     /* ==========================================================================
@@ -2498,58 +2385,118 @@ section:nth-of-type(4),.card:nth-child(4),[class*="-card"]:nth-child(4){animatio
     let sleepTimerTimeout = null;
     let sleepTimerMinutes = 0;
 
-    /* Kokoro-82M Hindi voice (offline, vendored) — the module script above
-       the dataset defines window.__kokoroSpeak / window.__kokoroStop. */
-    const KOKORO_HINDI_VOICES = [
-      { id: 'hf_alpha', label: 'Alpha', gender: 'Female' },
-      { id: 'hf_beta', label: 'Beta', gender: 'Female' },
-      { id: 'hm_omega', label: 'Omega', gender: 'Male' },
-      { id: 'hm_psi', label: 'Psi', gender: 'Male' },
-    ];
-    let selectedKokoroVoice = null; // 'hf_alpha' etc., or null = not explicitly picked
-    let currentKokoroVoice = 'hf_alpha';
-    let currentReadUsesKokoro = false; // true while the current blink is read by Kokoro
-    let kokoroRunToken = 0; // bumped to cancel an in-flight Kokoro sentence
-    let kokoroLoading = false;
+    /* Phonon 31M English voice (vendored runtime) + native voice for Hindi.
+       Same engine as the offline-llm-chat app: PhononTTS.load downloads the
+       ~35 MB voice once and caches it in the Cache API ('phonon-tts-v1'),
+       then works offline. English blinks read with Phonon by default;
+       Hindi blinks always use the device's native hi-IN voice. If Phonon
+       fails to load, English falls back to the native voice. */
+    let phononTts = null, phononVoice = null, phononFailed = false;
+    let phononAudio = null, phononGain = null;
+    let phononSources = [], phononLastEnd = 0;
+    let phononRunToken = 0; // bumped to cancel an in-flight Phonon sentence
+    let phononAbort = null; // aborts the in-flight Phonon stream, if any
+    let phononLoading = false;
+    let currentReadUsesPhonon = false; // true while the current blink is read by Phonon
 
-    // Kokoro Hindi voice for the current language, or null. Hindi defaults
-    // to Kokoro hf_alpha; an explicitly picked native voice wins.
-    function kokoroVoiceForCurrentLang() {
-      if (currentLanguage !== 'hi') return null;
-      if (selectedKokoroVoice) return selectedKokoroVoice;
-      if (userSelectedVoice) return null; // user explicitly picked a native voice
-      return 'hf_alpha';
+    function ensurePhononAudio() {
+      if (!phononAudio) {
+        phononAudio = new (window.AudioContext || window.webkitAudioContext)();
+        phononGain = phononAudio.createGain();
+        phononGain.gain.value = 1;
+        phononGain.connect(phononAudio.destination);
+      }
+      if (phononAudio.state === 'suspended') void phononAudio.resume();
     }
 
-    // Cancel whatever is speaking now — native utterance and/or Kokoro
-    // generation/playback. Use instead of speechSynth.cancel() anywhere the
-    // current sentence may be a Kokoro one.
-    function cancelCurrentSpeech() {
-      if (speechSynth) speechSynth.cancel();
-      kokoroRunToken++;
-      if (typeof window.__kokoroStop === 'function') {
-        try { window.__kokoroStop(); } catch (e) {}
+    async function loadPhonon() {
+      if (phononTts || phononFailed) return phononTts;
+      ensurePhononAudio();
+      setPhononLoadingUI(true, 'Preparing natural voice…');
+      try {
+        const { PhononTTS } = await import('./vendor/phonon-tts/index.js');
+        phononTts = await PhononTTS.load({ lang: 'en', device: 'auto', quant: 'q8',
+          onProgress: ({ loaded, total, cached }) => {
+            setPhononLoadingUI(true, cached ? 'Reading the local voice cache…'
+              : total ? `Preparing natural voice… ${Math.round((loaded / total) * 100)}%`
+              : `Preparing natural voice… ${Math.round(loaded / 1048576)} MB`);
+          } });
+        phononVoice = phononTts.voices[0];
+        setPhononLoadingUI(false);
+        updateDiagnosticBanner();
+        return phononTts;
+      } catch (e) {
+        console.error('Phonon load failed, falling back to device voice', e);
+        phononFailed = true;
+        setPhononLoadingUI(false);
+        return null;
       }
     }
 
-    // Spinner state in the existing player UI while Kokoro loads/generates
-    // (CPU/WASM takes ~7–14 s per short sentence). Never blocks the UI thread.
-    function setKokoroLoadingUI(on, label) {
-      kokoroLoading = on;
-      const btn = document.getElementById('player-play-btn');
-      if (btn) btn.textContent = on ? '⏳' : (isAudioPlaying ? '⏸' : '▶');
+    // Play one sentence with Phonon; resolves 'done' when playback ends,
+    // 'stopped' if the run token was bumped, throws if Phonon can't load
+    // (caller falls back to the native voice).
+    async function playPhononSentence(text, myToken) {
+      const engine = await loadPhonon();
+      if (!engine) throw new Error('Phonon unavailable');
+      if (myToken !== phononRunToken) return 'stopped';
+      ensurePhononAudio();
+      const parts = text.match(/[^.!?]+[.!?]+["']?|\S[^.!?]*$/g)?.map((s) => s.trim()).filter(Boolean) || [text];
+      try {
+        for (const part of parts) {
+          if (myToken !== phononRunToken) return 'stopped';
+          phononAbort = new AbortController();
+          const stream = phononTts.stream(part, { voice: phononVoice, signal: phononAbort.signal });
+          let cursor = Math.max(phononAudio.currentTime, phononLastEnd);
+          for await (const pcm of stream) {
+            if (myToken !== phononRunToken) return 'stopped';
+            const buf = phononAudio.createBuffer(1, pcm.length, phononTts.sampleRate);
+            buf.getChannelData(0).set(pcm);
+            const src = phononAudio.createBufferSource();
+            src.buffer = buf; src.playbackRate.value = audioPlaybackRate; src.connect(phononGain);
+            phononSources.push(src);
+            src.onended = () => { const idx = phononSources.indexOf(src); if (idx >= 0) phononSources.splice(idx, 1); };
+            cursor = Math.max(cursor, phononAudio.currentTime);
+            src.start(cursor); cursor += buf.duration / audioPlaybackRate;
+          }
+          await stream.done.catch(() => {});
+          phononLastEnd = cursor;
+          const waitMs = Math.max(0, (cursor - phononAudio.currentTime) * 1000);
+          await new Promise((r) => setTimeout(r, waitMs + 250));
+        }
+      } finally {
+        phononAbort = null;
+      }
+      return myToken !== phononRunToken ? 'stopped' : 'done';
     }
 
-    // Called by the Kokoro module while the model loads / a sentence generates.
-    window.__kokoroLoading = function (on, label) {
-      setKokoroLoadingUI(on, label);
+    function stopPhonon() {
+      phononRunToken++;
+      try { if (phononAbort) phononAbort.abort(); } catch (e) {}
+      phononSources.splice(0).forEach((s) => { try { s.stop(); } catch (e) {} });
+    }
+
+    // Cancel whatever is speaking now — native utterance and/or Phonon
+    // playback. Use instead of speechSynth.cancel() anywhere the current
+    // sentence may be a Phonon one.
+    function cancelCurrentSpeech() {
+      if (speechSynth) speechSynth.cancel();
+      stopPhonon();
+    }
+
+    // Spinner state in the existing player UI while Phonon loads/generates.
+    // Never blocks the UI thread.
+    function setPhononLoadingUI(on, label) {
+      phononLoading = on;
+      const btn = document.getElementById('player-play-btn');
+      if (btn) btn.textContent = on ? '⏳' : (isAudioPlaying ? '⏸' : '▶');
       const statusSpan = document.getElementById('diag-voice-status');
       if (on && label && statusSpan) {
         statusSpan.textContent = '⏳ ' + label;
       } else if (!on) {
         updateDiagnosticBanner();
       }
-    };
+    }
 
     // Mobile Audio Unlock Flag
     let audioUnlocked = false;
@@ -2641,15 +2588,7 @@ section:nth-of-type(4),.card:nth-child(4),[class*="-card"]:nth-child(4){animatio
 
     function populateVoiceSelects(voices) {
       const select = document.getElementById('header-voice-select');
-      select.innerHTML = '<option value="">Auto Detect Best Voice</option>';
-
-      // Kokoro offline Hindi voices first.
-      KOKORO_HINDI_VOICES.forEach(v => {
-        const opt = document.createElement('option');
-        opt.value = 'kokoro:' + v.id;
-        opt.textContent = `🇮🇳 [हिन्दी · Kokoro] ${v.label} — ${v.gender} (offline AI voice)`;
-        select.appendChild(opt);
-      });
+      select.innerHTML = '<option value="">Auto — Phonon (English) · device voice (Hindi)</option>';
 
       voices.forEach((v, i) => {
         const isHi = v.lang.startsWith('hi') || v.name.toLowerCase().includes('hindi');
@@ -2660,9 +2599,7 @@ section:nth-of-type(4),.card:nth-child(4),[class*="-card"]:nth-child(4){animatio
       });
 
       // Restore the current selection (repopulation also runs on voiceschanged).
-      if (selectedKokoroVoice) {
-        select.value = 'kokoro:' + selectedKokoroVoice;
-      } else if (userSelectedVoice) {
+      if (userSelectedVoice) {
         const idx = detectedVoices.indexOf(userSelectedVoice);
         if (idx >= 0) select.value = String(idx);
       }
@@ -2671,13 +2608,8 @@ section:nth-of-type(4),.card:nth-child(4),[class*="-card"]:nth-child(4){animatio
     function onUserSelectVoice(val) {
       if (val === "") {
         userSelectedVoice = null;
-        selectedKokoroVoice = null;
-      } else if (val.indexOf('kokoro:') === 0) {
-        selectedKokoroVoice = val.slice('kokoro:'.length);
-        userSelectedVoice = null;
       } else {
         userSelectedVoice = detectedVoices[parseInt(val)];
-        selectedKokoroVoice = null;
       }
       updateDiagnosticBanner();
       if (isAudioPlaying) {
@@ -2710,13 +2642,14 @@ section:nth-of-type(4),.card:nth-child(4),[class*="-card"]:nth-child(4){animatio
       const noteSpan = document.getElementById('diag-fallback-note');
       const playerBadge = document.getElementById('player-voice-badge');
 
-      // Kokoro Hindi voice active (Hindi mode, Kokoro picked or defaulted).
-      const kokoroVoice = kokoroVoiceForCurrentLang();
-      if (kokoroVoice) {
-        const meta = KOKORO_HINDI_VOICES.find(v => v.id === kokoroVoice) || { label: kokoroVoice };
-        statusSpan.textContent = `✓ Active Voice: Kokoro ${meta.label} (Hindi · offline AI voice)`;
+      // English reads with Phonon by default (unless the user picked a
+      // native voice). Hindi always uses the device's native voice.
+      if (currentLanguage === 'en' && !userSelectedVoice) {
+        statusSpan.textContent = phononFailed
+          ? '✓ Active Voice: device voice (Phonon unavailable)'
+          : '✓ Active Voice: Phonon (English · natural offline voice)';
         noteSpan.textContent = '';
-        playerBadge.textContent = '🎙️ हिन्दी Voice (Kokoro)';
+        playerBadge.textContent = '🎙️ English Voice (Phonon)';
         return;
       }
 
@@ -2748,14 +2681,13 @@ section:nth-of-type(4),.card:nth-child(4),[class*="-card"]:nth-child(4){animatio
 
     /* Test Speaker Button: 100% Reliable immediate sound check */
     function testSpeakerVoice() {
-      // Kokoro Hindi test (Hindi mode, Kokoro voice active): offline AI voice.
-      const kokoroVoice = kokoroVoiceForCurrentLang();
-      if (kokoroVoice && typeof window.__kokoroSpeak === 'function') {
+      // English default is Phonon: test it (first use downloads the voice).
+      if (currentLanguage === 'en' && !userSelectedVoice) {
         cancelCurrentSpeech();
-        const meta = KOKORO_HINDI_VOICES.find(v => v.id === kokoroVoice) || { label: kokoroVoice };
-        alert(`🔊 Playing sound test!\nVoice: Kokoro ${meta.label} (Hindi · offline AI voice)\nLanguage: hi`);
-        window.__kokoroSpeak("नमस्ते! ऑडियो बिल्कुल सही काम कर रहा है।", kokoroVoice).catch((err) => {
-          console.warn('Kokoro test failed, falling back to native voice:', err);
+        alert('🔊 Playing sound test!\nVoice: Phonon (English · natural offline voice)\nLanguage: en');
+        const myToken = phononRunToken;
+        playPhononSentence('Hello! Audio narration is working perfectly.', myToken).catch((err) => {
+          console.warn('Phonon test failed, falling back to native voice:', err);
           nativeSpeakerTest();
         });
         return;
@@ -2820,7 +2752,7 @@ section:nth-of-type(4),.card:nth-child(4),[class*="-card"]:nth-child(4){animatio
     }
 
     function playCurrentBlinkAudio() {
-      if (!speechSynth && typeof window.__kokoroSpeak !== 'function') return;
+      if (!speechSynth && currentLanguage === 'hi') return; // Hindi needs the native voice; English reads with Phonon
       cancelCurrentSpeech();
 
       if (!currentBook) currentBook = BOOKS[0];
@@ -2830,21 +2762,19 @@ section:nth-of-type(4),.card:nth-child(4),[class*="-card"]:nth-child(4){animatio
       const voice = getActiveVoice();
       const isVoiceHi = voice && (voice.lang.startsWith('hi') || voice.name.toLowerCase().includes('hindi'));
 
-      // Kokoro offline Hindi voice (default hf_alpha in Hindi mode, unless the
-      // user explicitly picked a native voice).
-      const kokoroVoice = kokoroVoiceForCurrentLang();
-      const useKokoro = !!kokoroVoice && typeof window.__kokoroSpeak === 'function';
-      currentKokoroVoice = kokoroVoice || 'hf_alpha';
-      currentReadUsesKokoro = false;
+      // English reads with Phonon by default (unless the user picked a
+      // native voice, or Phonon already failed to load); Hindi always uses
+      // the native device voice.
+      const usePhonon = currentLanguage === 'en' && !userSelectedVoice && !phononFailed;
+      currentReadUsesPhonon = usePhonon;
 
       let textToRead = "";
 
-      // SMART CONTENT SELECTION: Hindi text only with a Hindi voice (or Kokoro);
+      // SMART CONTENT SELECTION: Hindi text only with a Hindi voice;
       // otherwise fall back to English text.
       if (currentLanguage === 'hi') {
-        if ((isVoiceHi || useKokoro) && blink.contentHi) {
+        if (isVoiceHi && blink.contentHi) {
           textToRead = `${blink.titleHi || blink.title}। मुख्य सार: ${blink.takeawayHi || blink.takeaway}। ${blink.contentHi}`;
-          currentReadUsesKokoro = useKokoro;
         } else {
           textToRead = `${blink.title}. Key takeaway: ${blink.takeaway}. ${blink.content}`;
         }
@@ -2866,7 +2796,7 @@ section:nth-of-type(4),.card:nth-child(4),[class*="-card"]:nth-child(4){animatio
     }
 
     function speakNextSentence() {
-      if (!speechSynth && !currentReadUsesKokoro) return;
+      if (!speechSynth && !currentReadUsesPhonon) return;
 
       if (activeSentenceIndex >= currentSentences.length) {
         isAudioPlaying = false;
@@ -2881,9 +2811,9 @@ section:nth-of-type(4),.card:nth-child(4),[class*="-card"]:nth-child(4){animatio
         return;
       }
 
-      // Kokoro Hindi path (Hindi blink, Kokoro voice active).
-      if (currentReadUsesKokoro) {
-        speakNextSentenceKokoro();
+      // Phonon English path (English blink, Phonon voice active).
+      if (currentReadUsesPhonon) {
+        speakNextSentencePhonon();
         return;
       }
 
@@ -2923,27 +2853,30 @@ section:nth-of-type(4),.card:nth-child(4),[class*="-card"]:nth-child(4){animatio
       speechSynth.speak(utterance);
     }
 
-    // Kokoro Hindi sentence: generate (~7–14 s on CPU, spinner shown) then
-    // play. On any failure, fall back to the native voice for the rest of
-    // this blink — never leave the user with no voice.
-    async function speakNextSentenceKokoro() {
-      const myToken = kokoroRunToken;
+    // Phonon English sentence: load the voice on first use (downloads
+    // ~35 MB once, then cached), stream and play. On any failure, fall back
+    // to the native voice for the rest of this blink — never leave the user
+    // with no voice.
+    async function speakNextSentencePhonon() {
+      const myToken = phononRunToken;
       const sentence = currentSentences[activeSentenceIndex];
       isAudioPlaying = true;
       highlightActiveSentence(activeSentenceIndex);
       updateAudioPlayerUI();
       try {
-        const result = await window.__kokoroSpeak(sentence, currentKokoroVoice);
-        if (myToken !== kokoroRunToken || result === 'stopped') return; // stopped: don't advance
+        const result = await playPhononSentence(sentence, myToken);
+        if (myToken !== phononRunToken || result === 'stopped') return; // stopped: don't advance
         activeSentenceIndex++;
         document.getElementById('player-scrubber-fill').style.width = `${(activeSentenceIndex / currentSentences.length) * 100}%`;
         updateAudioPlayerUI();
         speakNextSentence();
       } catch (err) {
-        console.warn('Kokoro speech failed, falling back to native voice:', err);
-        if (myToken !== kokoroRunToken) return;
-        setKokoroLoadingUI(false);
-        currentReadUsesKokoro = false;
+        console.warn('Phonon speech failed, falling back to native voice:', err);
+        if (myToken !== phononRunToken) return;
+        setPhononLoadingUI(false);
+        // Silence any already-scheduled Phonon audio, then fall back.
+        phononSources.splice(0).forEach((s) => { try { s.stop(); } catch (e) {} });
+        currentReadUsesPhonon = false;
         speakNextSentence();
       }
     }
@@ -2964,7 +2897,7 @@ section:nth-of-type(4),.card:nth-child(4),[class*="-card"]:nth-child(4){animatio
 
     function stopSpeech() {
       cancelCurrentSpeech();
-      setKokoroLoadingUI(false);
+      setPhononLoadingUI(false);
       isAudioPlaying = false;
       unhighlightSentences();
       updateAudioPlayerUI();

@@ -21,7 +21,7 @@
   ],
   "name": "QuickBlink — Offline Micro-Learning",
   "short_name": "QuickBlink",
-  "description": "Offline micro-learning with reliable audio — Hindi, English.",
+  "description": "Offline micro-learning with reliable audio — Phonon voice for English, device voice for Hindi.",
   "theme_color": "#274c77",
   "background_color": "#eef4f8",
   "categories": [
