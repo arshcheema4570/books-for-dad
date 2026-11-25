@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Kitten Nano v2 test — QuickBlink</title>
+<style>
+  :root { --cream:#f6f2e9; --ink:#173d2b; --gold:#e5a83b; --gold-soft:#f8e7b7; --paper:#fffdf8; --line:#ded8c9; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--cream); color:var(--ink); font-family:Georgia, 'Times New Roman', serif; padding:18px 16px 40px; }
+  h1 { font-size:22px; margin:4px 0 2px; }
+  .sub { font-size:13px; opacity:.75; margin:0 0 14px; line-height:1.5; }
+  .card { background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:14px; margin-bottom:12px; }
+  .card h2 { font-size:15px; margin:0 0 8px; }
+  label.opt { display:block; padding:9px 10px; border:1px solid var(--line); border-radius:8px; margin-bottom:8px; cursor:pointer; font-size:14px; line-height:1.45; }
+  label.opt input { margin-right:8px; }
+  label.opt.sel { border-color:var(--gold); background:var(--gold-soft); }
+  select { width:100%; padding:10px; font-size:15px; font-family:inherit; border:1px solid var(--line); border-radius:8px; background:var(--paper); color:var(--ink); }
+  .row { display:flex; gap:8px; flex-wrap:wrap; }
+  button { flex:1; min-width:120px; padding:13px 10px; font-size:15px; font-family:inherit; border-radius:10px; border:1px solid var(--ink); cursor:pointer; }
+  .btn-kitten { background:var(--ink); color:#fff; }
+  .btn-phonon { background:var(--gold); color:var(--ink); border-color:var(--gold); }
+  .btn-stop { background:var(--paper); color:var(--ink); }
+  button:disabled { opacity:.45; cursor:default; }
+  #status { font-size:14px; line-height:1.5; min-height:22px; }
+  #progress-wrap { height:8px; background:var(--line); border-radius:4px; overflow:hidden; margin-top:8px; display:none; }
+  #progress-fill { height:100%; width:0%; background:var(--gold); }
+  table { width:100%; border-collapse:collapse; font-size:14px; }
+  td { padding:6px 4px; border-bottom:1px solid var(--line); }
+  td:last-child { text-align:right; font-variant-numeric:tabular-nums; }
+  .note { font-size:12.5px; line-height:1.55; opacity:.8; }
+  a { color:var(--ink); }
+</style>
+</head>
+<body>
+<h1>Kitten Nano v2 test</h1>
+<p class="sub">Same real QuickBlink text, two voices, side by side. Listen on your phone and judge by ear — that is the verdict that counts.</p>
+
+<div class="card">
+  <h2>1. Pick a text</h2>
+  <label class="opt sel"><input type="radio" name="txt" value="a" checked> <b>Short — Ikigai:</b> “Ikigai is the intersection of what you love, what you are good at, and what the world needs.”</label>
+  <label class="opt"><input type="radio" name="txt" value="b"> <b>Short — Hara Hachi Bu:</b> “Stop eating when you feel 80% full to preserve vital energy and prevent disease.”</label>
+  <label class="opt"><input type="radio" name="txt" value="c"> <b>Short — Flow:</b> “When a task matches your skill and holds your full attention, time disappears. That state, called flow, is a deep source of happiness.”</label>
+  <label class="opt"><input type="radio" name="txt" value="d"> <b>Long — full Ikigai blink</b> (~900 characters, the real “What is Ikigai?” summary)</label>
+  <label class="opt"><input type="radio" name="txt" value="e"> <b>Punctuation check:</b> “Hello, world. This is a test: does it pause at commas, stop at full stops — and handle questions? Yes, it should. Wait… one more sentence!”</label>
+</div>
+
+<div class="card">
+  <h2>2. Kitten v2 voice (real names)</h2>
+  <select id="voice">
+    <option value="bella" selected>Eleanor (female)</option>
+    <option value="jasper">Otis (male)</option>
+    <option value="luna">Martha (female)</option>
+    <option value="bruno">Vincent (male)</option>
+    <option value="rosie">Serena (female)</option>
+    <option value="hugo">Max (male)</option>
+    <option value="kiki">Grace (female)</option>
+    <option value="leo">Danny (male)</option>
+  </select>
+</div>
+
+<div class="card">
+  <h2>3. Play</h2>
+  <div class="row">
+    <button class="btn-kitten" id="play-kitten">▶ Kitten Nano v2</button>
+    <button class="btn-phonon" id="play-phonon">▶ Phonon 31M</button>
+    <button class="btn-stop" id="stop">■ Stop</button>
+  </div>
+  <p id="status">Ready. First Kitten v2 play downloads the 8.8&nbsp;MB int4 model + 3.4&nbsp;MB voices once, then the browser cache keeps them.</p>
+  <div id="progress-wrap"><div id="progress-fill"></div></div>
+</div>
+
+<div class="card">
+  <h2>Timings</h2>
+  <table>
+    <tr><td>Kitten v2 model load</td><td id="t-kitten-load">—</td></tr>
+    <tr><td>Kitten v2 first audio</td><td id="t-kitten-first">—</td></tr>
+    <tr><td>Kitten v2 total (speak done)</td><td id="t-kitten-total">—</td></tr>
+    <tr><td>Phonon load</td><td id="t-phonon-load">—</td></tr>
+    <tr><td>Phonon first audio</td><td id="t-phonon-first">—</td></tr>
+    <tr><td>Phonon total</td><td id="t-phonon-total">—</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <p class="note"><b>What this is testing.</b> The Web SDK (v0.1.0) only ships the v1 models, so this page loads the <b>v2 Nano int4</b> files (17M params, <b>8.8&nbsp;MB</b> per language, 24&nbsp;kHz, Apache 2.0) through the SDK's <code>modelFiles</code> override. The v2 graph takes the exact same inputs as v1 (<code>input_ids</code> / <code>style</code> / <code>speed</code>) and uses the same v1 phonemizer and token table — verified locally: “Hello, world.” produced a clean 1.65&nbsp;s waveform under ONNX Runtime 1.32 before this page was built. One adapter was needed: the SDK looks voices up by v1 keys, so the v2 voice pack was remapped (Eleanor→Bella, Otis→Jasper, Martha→Luna, Vincent→Bruno, Serena→Rosie, Max→Hugo, Grace→Kiki, Danny→Leo); the picker above shows the real v2 names. Int4 needs ONNX opset 21 — the SDK's runtime (1.24.3) covers it, but the phone is the real check. The v2 model names its timing output <code>durations</code>, not <code>duration</code>, so word timings are unavailable — playback is unaffected. Analytics is off (<code>analytics: false</code>). English only — Hindi stays on the device voice, unchanged.</p>
+  <p class="note"><a href="./">← Back to QuickBlink</a></p>
+</div>
+
+<script defer src="./vendor/kitten-web/kittentts-web.js"></script>
+<script>
+const TEXTS = {
+  a: "Ikigai is the intersection of what you love, what you are good at, and what the world needs.",
+  b: "Stop eating when you feel 80% full to preserve vital energy and prevent disease.",
+  c: "When a task matches your skill and holds your full attention, time disappears. That state, called flow, is a deep source of happiness.",
+  d: "In Okinawa, Japan, people live longer and healthier lives than anywhere else on earth, and one of their biggest secrets is having an Ikigai — a clear reason to wake up with joy every morning. Ikigai is the point where four things meet: what you love, what you are good at, what the world needs, and what can support your life. When those four overlap, even ordinary days gain direction and small tasks feel worth doing well. The book explains that a strong sense of purpose protects body and mind: stress melts away, and mental vitality stays sharp well into your nineties, because the brain always has a reason to stay engaged. Purpose need not be grand; tending a garden, caring for family, or mastering a small craft can all be an Ikigai. Practical step: write down one thing you love, one thing you do well, and one way it helps someone else, then look for where the three overlap.",
+  e: "Hello, world. This is a test: does it pause at commas, stop at full stops — and handle questions? Yes, it should. Wait... one more sentence!"
+};
+
+const $ = (id) => document.getElementById(id);
+const statusEl = $('status'), progressWrap = $('progress-wrap'), progressFill = $('progress-fill');
+function setStatus(t) { statusEl.textContent = t; }
+function setProgress(p) {
+  progressWrap.style.display = p == null ? 'none' : 'block';
+  if (p != null) progressFill.style.width = Math.round(p * 100) + '%';
+}
+function fmt(ms) { return ms == null ? '—' : (ms < 1000 ? Math.round(ms) + ' ms' : (ms / 1000).toFixed(1) + ' s'); }
+function selText() {
+  const v = document.querySelector('input[name="txt"]:checked').value;
+  return TEXTS[v];
+}
+document.querySelectorAll('input[name="txt"]').forEach((r) => r.addEventListener('change', () => {
+  document.querySelectorAll('label.opt').forEach((l) => l.classList.remove('sel'));
+  r.closest('label').classList.add('sel');
+}));
+
+/* ---------- Kitten Nano v2 ----------
+   The Web SDK (v0.1.0) only knows the v1 models, so the v2 int4 files are
+   loaded as bytes and handed to the SDK via its modelFiles override.
+   The SDK's voice lookup uses v1 keys, which the vendored voices file
+   already carries (remapped from the v2 names — see the note on the page). */
+async function fetchBytes(url, label, totalBytes) {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(label + ' download failed: HTTP ' + res.status);
+  const buf = await res.arrayBuffer();
+  return new Uint8Array(buf);
+}
+let kitten = null, kittenLoading = null, kittenRun = 0;
+async function loadKitten() {
+  if (kitten) return kitten;
+  if (kittenLoading) return kittenLoading;
+  if (!window.KittenTTSWeb) throw new Error('Kitten SDK bundle did not load');
+  const { KittenTTS, createBrowserAudioPlayer } = window.KittenTTSWeb;
+  const t0 = performance.now();
+  kittenLoading = (async () => {
+    setStatus('Downloading Kitten v2 Nano int4 model (8.8 MB)…');
+    setProgress(0.1);
+    const onnxData = await fetchBytes('./vendor/kitten-web-v2/v2-nano-en-int4.onnx', 'Model', 8832023);
+    setStatus('Downloading v2 voices (3.4 MB)…');
+    setProgress(0.7);
+    const voicesData = await fetchBytes('./vendor/kitten-web-v2/voices_v2_en_remapped.npz', 'Voices', 3421184);
+    setStatus('Starting Kitten v2 engine…');
+    const t = await KittenTTS.create(
+      { model: 'nano-int8', modelFiles: { onnxData, voicesData }, defaultVoice: $('voice').value, player: createBrowserAudioPlayer(), analytics: false },
+    );
+    kitten = t;
+    $('t-kitten-load').textContent = fmt(performance.now() - t0);
+    setProgress(null);
+    return t;
+  })().catch((e) => { kittenLoading = null; setProgress(null); throw e; });
+  return kittenLoading;
+}
+async function playKitten() {
+  const myRun = ++kittenRun;
+  stopPhonon();
+  const text = selText(), voice = $('voice').value;
+  try {
+    const t = await loadKitten();
+    if (myRun !== kittenRun) return;
+    setStatus('Kitten Nano v2 speaking…');
+    const t0 = performance.now();
+    let firstAt = null;
+    await t.speak(text, { voice, onPlaybackStart: () => { if (firstAt == null) firstAt = performance.now() - t0; } });
+    if (myRun !== kittenRun) return;
+    $('t-kitten-first').textContent = fmt(firstAt);
+    $('t-kitten-total').textContent = fmt(performance.now() - t0);
+    setStatus('Kitten v2 done. Now try Phonon on the same text.');
+  } catch (e) {
+    console.error(e);
+    setStatus('Kitten v2 failed: ' + (e && e.message ? e.message : e));
+  }
+}
+
+/* ---------- Phonon 31M (same engine as the app, pre-buffered) ---------- */
+let phononTts = null, phononVoice = null, phononFailed = false, phononAudio = null, phononGain = null;
+let phononSources = [], phononLastEnd = 0, phononRunToken = 0, phononAbort = null;
+function ensurePhononAudio() {
+  if (!phononAudio) {
+    phononAudio = new (window.AudioContext || window.webkitAudioContext)();
+    phononGain = phononAudio.createGain();
+    phononGain.connect(phononAudio.destination);
+  }
+  if (phononAudio.state === 'suspended') void phononAudio.resume();
+}
+async function loadPhonon() {
+  if (phononTts || phononFailed) return phononTts;
+  ensurePhononAudio();
+  try {
+    const { PhononTTS } = await import('./vendor/phonon-tts/index.js');
+    phononTts = await PhononTTS.load({ lang: 'en', device: 'auto', quant: 'q8',
+      onProgress: ({ loaded, total, cached }) => {
+        setStatus(cached ? 'Reading the local Phonon voice cache…'
+          : total ? 'Preparing Phonon… ' + Math.round((loaded / total) * 100) + '%'
+          : 'Preparing Phonon… ' + Math.round(loaded / 1048576) + ' MB');
+      } });
+    phononVoice = phononTts.voices[0];
+    return phononTts;
+  } catch (e) {
+    console.error('Phonon load failed', e);
+    phononFailed = true;
+    return null;
+  }
+}
+function stopPhonon() {
+  phononRunToken++;
+  try { if (phononAbort) phononAbort.abort(); } catch (e) {}
+  phononSources.splice(0).forEach((s) => { try { s.stop(); } catch (e) {} });
+}
+async function playPhonon() {
+  const myToken = ++phononRunToken;
+  if (kitten) { try { await kitten.stopSpeaking(); } catch (e) {} }
+  kittenRun++;
+  const text = selText();
+  const t0 = performance.now();
+  const engine = await loadPhonon();
+  if (!engine) { setStatus('Phonon unavailable on this device.'); return; }
+  $('t-phonon-load').textContent = fmt(performance.now() - t0);
+  if (myToken !== phononRunToken) return;
+  ensurePhononAudio();
+  setStatus('Phonon speaking…');
+  const parts = text.match(/[^.!?]+[.!?]+["']?|\S[^.!?]*$/g)?.map((s) => s.trim()).filter(Boolean) || [text];
+  const gen0 = performance.now();
+  let firstAt = null;
+  try {
+    for (const part of parts) {
+      if (myToken !== phononRunToken) return;
+      phononAbort = new AbortController();
+      let pcm;
+      try {
+        pcm = await phononTts.synth(part, { voice: phononVoice, signal: phononAbort.signal });
+      } catch (e) {
+        if (myToken !== phononRunToken) return;
+        throw e;
+      }
+      if (myToken !== phononRunToken) return;
+      if (!pcm.length) continue;
+      const buf = phononAudio.createBuffer(1, pcm.length, phononTts.sampleRate);
+      buf.getChannelData(0).set(pcm);
+      const src = phononAudio.createBufferSource();
+      src.buffer = buf; src.connect(phononGain);
+      phononSources.push(src);
+      src.onended = () => { const i = phononSources.indexOf(src); if (i >= 0) phononSources.splice(i, 1); };
+      const cursor = Math.max(phononAudio.currentTime, phononLastEnd);
+      if (firstAt == null) firstAt = performance.now() - gen0;
+      src.start(cursor);
+      phononLastEnd = cursor + buf.duration;
+      const waitMs = Math.max(0, (phononLastEnd - phononAudio.currentTime) * 1000);
+      await new Promise((r) => setTimeout(r, waitMs + 250));
+    }
+  } catch (e) {
+    console.error(e);
+    setStatus('Phonon failed: ' + (e && e.message ? e.message : e));
+    return;
+  } finally {
+    phononAbort = null;
+  }
+  if (myToken !== phononRunToken) return;
+  $('t-phonon-first').textContent = fmt(firstAt);
+  $('t-phonon-total').textContent = fmt(performance.now() - gen0);
+  setStatus('Phonon done. Compare with Kitten v2 above — which sounded better?');
+}
+
+$('play-kitten').addEventListener('click', playKitten);
+$('play-phonon').addEventListener('click', playPhonon);
+$('stop').addEventListener('click', async () => {
+  kittenRun++;
+  stopPhonon();
+  if (kitten) { try { await kitten.stopSpeaking(); } catch (e) {} }
+  setStatus('Stopped.');
+});
+</script>
+</body>
+</html>
